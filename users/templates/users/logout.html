@@ -1,0 +1,9 @@
+{% extends 'task_tracker/base.html' %}
+{% block content %}
+<h2>You are now logged out.</h2>
+<div class="border-top pt-3">
+    <small class="text-muted">
+        <a class="ml-2" href="{% url 'login' %}">Log in here</a>
+    </small>
+</div>
+{% endblock content %}
