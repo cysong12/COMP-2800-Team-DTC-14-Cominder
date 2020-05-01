@@ -19,7 +19,6 @@
 <br>
 
 ### Deployed version
-<br>
 https://cominder.herokuapp.com/
 
 <br>
