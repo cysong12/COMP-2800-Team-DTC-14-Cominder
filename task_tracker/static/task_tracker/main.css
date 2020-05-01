@@ -24,7 +24,7 @@ body {
     color: #ffffff;
   }
 
-  .main-content {
+  .register-form {
     background: #ffffff;
     padding: 10px 20px;
     border: 1px solid #dddddd;
@@ -76,11 +76,4 @@ body {
 
   #landing_page_body .landing_page_nav_link:hover {
     color: #FFC2C2;
-  }
-
-  .account-img {
-    height: 125px;
-    width: 125px;
-    margin-right: 20px;
-    margin-bottom: 16px;
   }
