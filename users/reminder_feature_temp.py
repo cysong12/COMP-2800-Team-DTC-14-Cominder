@@ -62,6 +62,7 @@ class Tasks:
         counter = 1
         for task in self.__tasks:
             print(f"{counter}: {task.get_name()} {task.get_date()}")
+            counter += 1
 
 
 class User:
@@ -84,13 +85,17 @@ def main():
     task1 = Task('go biking', datetime.datetime(2020, 5, 1))
     task2 = Task('go play league', datetime.datetime(2020, 5, 3))
     task3 = Task('go scubadiving', datetime.datetime(2020, 5, 4))
-    task4 = Task('go hiking', datetime.datetime(2020, 5, 6))
-    task5 = Task('go learn python', datetime.datetime(2020, 5, 9))
+    task4 = Task('go play hearthstone', datetime.datetime(2020, 5, 4))
+    task5 = Task('go play tft', datetime.datetime(2020, 5, 4))
+    task6 = Task('go hiking', datetime.datetime(2020, 5, 6))
+    task7 = Task('go learn python', datetime.datetime(2020, 5, 9))
     user.tasks.add(task1)
     user.tasks.add(task2)
     user.tasks.add(task3)
     user.tasks.add(task4)
     user.tasks.add(task5)
+    user.tasks.add(task6)
+    user.tasks.add(task7)
     user_tasks = user.tasks
 
     a_task = Task('go ham', datetime.datetime(2020, 5, 7))
