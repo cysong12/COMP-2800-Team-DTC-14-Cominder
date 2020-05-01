@@ -17,3 +17,9 @@
 2.) `localhost:8000/about` to go to about page <br>
 
 <br>
+
+### Deployed version
+<br>
+https://cominder.herokuapp.com/
+
+<br>
