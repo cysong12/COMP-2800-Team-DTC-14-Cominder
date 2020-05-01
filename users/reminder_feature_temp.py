@@ -58,47 +58,44 @@ class Tasks:
     def get_tasks(self):
         return self.__tasks
 
+    def debug_print(self):
+        counter = 1
+        for task in self.__tasks:
+            print(f"{counter}: {task.get_name()} {task.get_date()}")
+
 
 class User:
     def __init__(self):
         self.tasks = Tasks()
 
 
-def search(tasks: Tasks, task: Task, first, last):
-    mid = (first + last - 1) // 2
-    if last > 1:
-        if tasks.get_tasks()[mid].get_date() == task.get_date():
-            return search(tasks, task, mid + 1, last)
-        elif tasks.get_tasks()[mid].get_date() > task.get_date():
-            return search(tasks, task, first, mid - 1)
-        else:
-            return search(tasks, task, mid + 1, last)
-    else:
-        if task.get_date() > tasks.get_tasks()[last]:
-            return mid + 1
-        else:
-            return mid - 1
-
-
-def sorted_insert(tasks: Tasks, task: Task):
-    search_index = search(tasks, task, 0, tasks.size())
-    if search_index is None:
-        return
+def search_and_insert_sorted(tasks: Tasks, task: Task, size):
+    i = size - 1
+    tasks.get_tasks().append('')
+    while i >= 0 and tasks.get_tasks()[i].get_date() > task.get_date():
+        tasks.get_tasks()[i + 1] = tasks.get_tasks()[i]
+        i -= 1
+    tasks.get_tasks()[i + 1] = task
 
 
 # test
 def main():
     user = User()
     task1 = Task('go biking', datetime.datetime(2020, 5, 1))
-    task2 = Task('go biking', datetime.datetime(2020, 5, 1))
-    task3 = Task('go biking', datetime.datetime(2020, 5, 1))
-    task4 = Task('go biking', datetime.datetime(2020, 5, 1))
-    task5 = Task('go biking', datetime.datetime(2020, 5, 1))
+    task2 = Task('go play league', datetime.datetime(2020, 5, 3))
+    task3 = Task('go scubadiving', datetime.datetime(2020, 5, 4))
+    task4 = Task('go hiking', datetime.datetime(2020, 5, 6))
+    task5 = Task('go learn python', datetime.datetime(2020, 5, 9))
     user.tasks.add(task1)
-    user_tasks = user.tasks.get_tasks()
-    print(user_tasks[0].get_name())
+    user.tasks.add(task2)
+    user.tasks.add(task3)
+    user.tasks.add(task4)
+    user.tasks.add(task5)
+    user_tasks = user.tasks
 
-    print()
+    a_task = Task('go ham', datetime.datetime(2020, 5, 7))
+    search_and_insert_sorted(user_tasks, a_task, user_tasks.size())
+    user_tasks.debug_print()
 
 
 if __name__ == "__main__":
