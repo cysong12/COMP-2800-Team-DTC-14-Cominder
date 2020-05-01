@@ -126,15 +126,6 @@ class Gender(Enum):
     APACHE_HELICOPTER = 4
 
 
-def search_and_insert_task_sorted(tasks: list, task: Task, size):
-    i = size - 1
-    tasks.append('')
-    while i >= 0 and tasks[i].get_date() > task.get_date():
-        tasks[i + 1] = tasks[i]
-        i -= 1
-    tasks[i + 1] = task
-
-
 def search_find_index(tasks: list, task: Task, start, end):
     if end - start + 1 <= 0:
         return start
