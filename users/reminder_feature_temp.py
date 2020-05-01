@@ -66,14 +66,14 @@ class Tasks:
 
 
 class User:
-    def __init__(self, first, last, birth_date, gender_enum, **kwargs):   # first, middle, last, age, birthday, gender
+    def __init__(self, first, last, birth_date, gender_enum, intolerance: list = None, **kwargs):
         self.__tasks = Tasks()
         self.__first_name = first
         self.__last_name = last
         self.__birth_date = birth_date
         self.__gender = gender_enum
         self.__middle_name = ''
-        self.__has_food_intolerance = False
+        self.__food_intolerance = intolerance if intolerance is not None else []
         for key in kwargs:
             if key == "middle_name":
                 self.__middle_name = kwargs[key]
@@ -95,6 +95,9 @@ class User:
 
     def get_gender(self):
         return self.__gender
+
+    def get_food_intolerance(self):
+        return self.__food_intolerance
 
 
 class Gender(Enum):
