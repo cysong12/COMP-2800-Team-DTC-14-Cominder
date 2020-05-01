@@ -4,12 +4,12 @@ from enum import Enum
 
 '''
 Rough snippet for reminder feature.
-To be implemented/moved in views.
+To be implemented/moved in views.py
 '''
 
 
 class Task:
-    def __init__(self, task_name: str, date: datetime.datetime, task_duration: datetime.datetime = None,
+    def __init__(self, task_name: str, date: datetime.datetime, task_duration: datetime.timedelta = None,
                  task_detail: str = None, task_reward_point: int = None):
         self.__name = task_name
         self.__date = date     # datetime obj; date assigned (task starting date)
@@ -65,8 +65,9 @@ class Tasks:
             counter += 1
 
 
+# initialized whenever user logs in
 class User:
-    def __init__(self, first, last, birth_date, gender_enum, intolerance: list = None, **kwargs):
+    def __init__(self, first: str, last: str, birth_date: datetime.datetime, gender_enum, intolerance: list = None, food_preferences: list = None, **kwargs):
         self.__tasks = Tasks()
         self.__first_name = first
         self.__last_name = last
@@ -74,6 +75,7 @@ class User:
         self.__gender = gender_enum
         self.__middle_name = ''
         self.__food_intolerance = intolerance if intolerance is not None else []
+        self.__food_preferences = food_preferences if food_preferences is not None else []
         for key in kwargs:
             if key == "middle_name":
                 self.__middle_name = kwargs[key]
@@ -82,6 +84,8 @@ class User:
         return self.__tasks
 
     def get_full_name(self):
+        if self.__middle_name:
+            return ' '.join([self.__first_name, self.__last_name])
         return ' '.join([self.__first_name, self.__last_name])
 
     def get_first_name(self):
@@ -104,7 +108,7 @@ class Gender(Enum):
     MALE = 1
     FEMALE = 2
     OTHER = 3
-    APACHI_HELICOPTER = 4
+    APACHE_HELICOPTER = 4
 
 
 def search_and_insert_sorted(tasks: Tasks, task: Task, size):
@@ -119,21 +123,21 @@ def search_and_insert_sorted(tasks: Tasks, task: Task, size):
 # test
 def main():
     user = User('Choi', 'Song', datetime.datetime(1992, 12, 18), True, middle_name="Yong")
-    task1 = Task('go biking', datetime.datetime(2020, 5, 1))
-    task2 = Task('go play league', datetime.datetime(2020, 5, 3))
-    task3 = Task('go scubadiving', datetime.datetime(2020, 5, 4))
-    task4 = Task('go play hearthstone', datetime.datetime(2020, 5, 4))
-    task5 = Task('go play tft', datetime.datetime(2020, 5, 4))
-    task6 = Task('go hiking', datetime.datetime(2020, 5, 6))
+    task1 = Task('go biking', datetime.datetime(2020, 5, 5))
+    task2 = Task('go play league', datetime.datetime(2020, 5, 2))
+    task3 = Task('go scubadiving', datetime.datetime(2020, 5, 4, 16))
+    task4 = Task('go play hearthstone', datetime.datetime(2020, 5, 4, 12))
+    task5 = Task('go play tft', datetime.datetime(2020, 5, 4, 1))
+    task6 = Task('go hiking', datetime.datetime(2020, 5, 3))
     task7 = Task('go learn python', datetime.datetime(2020, 5, 9))
-    user.get_tasks().add(task1)
-    user.get_tasks().add(task2)
-    user.get_tasks().add(task3)
-    user.get_tasks().add(task4)
-    user.get_tasks().add(task5)
-    user.get_tasks().add(task6)
-    user.get_tasks().add(task7)
     user_tasks = user.get_tasks()
+    search_and_insert_sorted(user_tasks, task1, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task2, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task3, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task4, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task5, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task6, user_tasks.size())
+    search_and_insert_sorted(user_tasks, task7, user_tasks.size())
 
     a_task = Task('go ham', datetime.datetime(2020, 5, 7))
     search_and_insert_sorted(user_tasks, a_task, user_tasks.size())

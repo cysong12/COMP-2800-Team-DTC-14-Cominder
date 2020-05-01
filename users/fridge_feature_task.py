@@ -2,8 +2,12 @@ from Cominder.users.reminder_feature_temp import User
 from enum import Enum
 import datetime
 import requests
-import spoonacular
 import json
+
+'''
+Rough snippet for the fridge feature.
+To be implemented/moved in views.py
+'''
 
 
 class Fridge:
@@ -48,7 +52,7 @@ class Recipes:
 
     def generate_recipe(self, ingredients: list = None):
         api_key = "80606778f33c4f65b713ee014ecd2f70"
-        url = "https://api.spoonacular.com/recipes/findByIngredients"
+        url = "https://api.spoonacular.com/recipes/search"
         api_url = f"{url}?apiKey={api_key}"
         parameters = {
             'number': 5,
