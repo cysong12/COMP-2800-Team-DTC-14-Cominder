@@ -9,7 +9,7 @@ To be implemented/moved in views.
 
 
 class Task:
-    def __init__(self, task_name: str, date: datetime.datetime = None, task_duration: datetime.datetime = None,
+    def __init__(self, task_name: str, date: datetime.datetime, task_duration: datetime.datetime = None,
                  task_detail: str = None, task_reward_point: int = None):
         self.__name = task_name
         self.__date = date     # datetime obj; date assigned (task starting date)
@@ -64,13 +64,41 @@ class User:
         self.tasks = Tasks()
 
 
+def search(tasks: Tasks, task: Task, first, last):
+    mid = (first + last - 1) // 2
+    if last > 1:
+        if tasks.get_tasks()[mid].get_date() == task.get_date():
+            return search(tasks, task, mid + 1, last)
+        elif tasks.get_tasks()[mid].get_date() > task.get_date():
+            return search(tasks, task, first, mid - 1)
+        else:
+            return search(tasks, task, mid + 1, last)
+    else:
+        if task.get_date() > tasks.get_tasks()[last]:
+            return mid + 1
+        else:
+            return mid - 1
+
+
+def sorted_insert(tasks: Tasks, task: Task):
+    search_index = search(tasks, task, 0, tasks.size())
+    if search_index is None:
+        return
+
+
 # test
 def main():
     user = User()
-    task1 = Task('go biking')
+    task1 = Task('go biking', datetime.datetime(2020, 5, 1))
+    task2 = Task('go biking', datetime.datetime(2020, 5, 1))
+    task3 = Task('go biking', datetime.datetime(2020, 5, 1))
+    task4 = Task('go biking', datetime.datetime(2020, 5, 1))
+    task5 = Task('go biking', datetime.datetime(2020, 5, 1))
     user.tasks.add(task1)
     user_tasks = user.tasks.get_tasks()
     print(user_tasks[0].get_name())
+
+    print()
 
 
 if __name__ == "__main__":
