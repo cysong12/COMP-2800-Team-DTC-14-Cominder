@@ -4,6 +4,7 @@ import datetime
 import requests
 import json
 
+
 '''
 Rough snippet for the fridge feature.
 To be implemented/moved in views.py
@@ -86,7 +87,7 @@ def main():
     print(user_fridge.get_items_dict())
     print(user_fridge.get_number_of_an_item("bananas"))
     generate_recipe = Recipes(user.get_food_intolerance(), list(user_fridge.get_items_dict().keys()))
-<<<<<<< HEAD
+
     recipe_json = generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys()))
     print(recipe_json)
     print('\n' + '-' * 100 + '\n')
@@ -106,9 +107,8 @@ def main():
                 counter += 1
         print(k['image'])
         print(k['sourceUrl'])
-=======
     print(generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys())))
->>>>>>> dev
+
 
 
 if __name__ == "__main__":
