@@ -32,3 +32,48 @@ body {
     margin-bottom: 20px;
   }
 
+    .site_logo {
+    width: 175px;
+    height: 75px;
+  }
+
+  .landing_page_navbar {
+    padding-bottom: 20px;
+  }
+
+  #landing_page_header {
+    background-image: url("../images/jumbotron_image.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  #landing_page_header h1 {
+    color: white;
+    margin-bottom: 400px;
+  }
+
+  #landing_page_header a {
+    background-color: #FFC2C2;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+    padding: 10px;
+  }
+
+  #landing_page_header a:hover {
+    color: #c88b8b;
+  }
+
+  #landing_page_body {
+    margin-top: 50px;
+  }
+
+  #landing_page_body .landing_page_nav_link {
+    color: #c88b8b;
+    transition: .3s;
+    font-size: x-large;
+  }
+
+  #landing_page_body .landing_page_nav_link:hover {
+    color: #FFC2C2;
+  }
