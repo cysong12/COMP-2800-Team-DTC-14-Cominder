@@ -107,5 +107,5 @@ def main():
         print(k['sourceUrl'])
 
 
-if __name__ == "__main__":          # ya
+if __name__ == "__main__":
     main()
