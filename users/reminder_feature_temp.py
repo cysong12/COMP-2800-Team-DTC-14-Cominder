@@ -9,11 +9,11 @@ To be implemented/moved in views.
 
 
 class Task:
-    def __init__(self, task_name: str, task_duration: datetime.datetime = None, date: datetime.datetime = None,
+    def __init__(self, task_name: str, date: datetime.datetime = None, task_duration: datetime.datetime = None,
                  task_detail: str = None, task_reward_point: int = None):
         self.__name = task_name
-        self.__date = date     # datetime obj
-        self.__detail = task_detail        # user memo
+        self.__date = date     # datetime obj; date assigned (task starting date)
+        self.__detail = '' if task_detail is None else task_detail        # user memo
         self.__duration = datetime.timedelta(days=1) if task_duration is None else \
             datetime.timedelta(weeks=task_duration.weeks, days=task_duration.days, hours=task_duration.hours,
                                minutes=task_duration.minutes)
@@ -55,21 +55,22 @@ class Tasks:
     def size(self):
         return len(self.__tasks)
 
-    
+    def get_tasks(self):
+        return self.__tasks
+
+
 class User:
     def __init__(self):
-        self.__tasks = Tasks()
-
-    def add_task(self):
-        pass
+        self.tasks = Tasks()
 
 
-def print_task_object(tasks):
-    pass
-
-
+# test
 def main():
-    pass
+    user = User()
+    task1 = Task('go biking')
+    user.tasks.add(task1)
+    user_tasks = user.tasks.get_tasks()
+    print(user_tasks[0].get_name())
 
 
 if __name__ == "__main__":
