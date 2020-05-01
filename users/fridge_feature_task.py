@@ -56,7 +56,7 @@ class Recipes:
         url = "https://api.spoonacular.com/recipes/complexSearch"
         api_url = f"{url}?apiKey={api_key}"
         parameters = {
-            'number': 1,
+            'number': 5,
             'includeIngredients': ', '.join(ingredients) if ingredients is not None else self.__ingredients,
             'intolerances': ', '.join(self.__intolerance) if not self.__intolerance else '',
             'fillIngredients': True,
@@ -86,6 +86,7 @@ def main():
     print(user_fridge.get_items_dict())
     print(user_fridge.get_number_of_an_item("bananas"))
     generate_recipe = Recipes(user.get_food_intolerance(), list(user_fridge.get_items_dict().keys()))
+<<<<<<< HEAD
     recipe_json = generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys()))
     print(recipe_json)
     print('\n' + '-' * 100 + '\n')
@@ -105,6 +106,9 @@ def main():
                 counter += 1
         print(k['image'])
         print(k['sourceUrl'])
+=======
+    print(generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys())))
+>>>>>>> dev
 
 
 if __name__ == "__main__":
