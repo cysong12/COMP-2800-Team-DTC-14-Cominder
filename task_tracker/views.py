@@ -12,3 +12,6 @@ def about(request):
 
 def landing_page(request):
 	return render(request, 'task_tracker/landing_page.html')
+
+def contact(request):
+    return render(request, 'task_tracker/contact.html')
