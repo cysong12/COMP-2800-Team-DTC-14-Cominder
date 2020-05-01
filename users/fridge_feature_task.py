@@ -47,19 +47,21 @@ class Fridge:
 
 
 class Recipes:
-    def __init__(self, intolerance, ingredients: list = None):
-        self.intolerance = intolerance
+    def __init__(self, intolerance: list, ingredients: list = None):
+        self.__intolerance = intolerance
+        self.__ingredients = ingredients if ingredients is not None else ''
 
     def generate_recipe(self, ingredients: list = None):
         api_key = "80606778f33c4f65b713ee014ecd2f70"
-        url = "https://api.spoonacular.com/recipes/search"
+        url = "https://api.spoonacular.com/recipes/complexSearch"
         api_url = f"{url}?apiKey={api_key}"
         parameters = {
             'number': 5,
-            'ingredients': ', '.join(ingredients) if ingredients is not None else '',
-            'ranking': 1,
-            'limitLicense': False,
-            'fillIngredients': False
+            'includeIngredients': ', '.join(ingredients) if ingredients is not None else self.__ingredients,
+            'intolerances': ', '.join(self.__intolerance) if not self.__intolerance else '',
+            'fillIngredients': True,
+            'addRecipeInformation': True,
+            'addRecipeNutrition': True
         }
         headers = {
             'Content-Type': 'application/json',
@@ -83,7 +85,7 @@ def main():
     user_fridge.delete_items(('grapes', 'oranges'))
     print(user_fridge.get_items_dict())
     print(user_fridge.get_number_of_an_item("bananas"))
-    generate_recipe = Recipes(user.get_food_intolerance())
+    generate_recipe = Recipes(user.get_food_intolerance(), list(user_fridge.get_items_dict().keys()))
     print(generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys())))
 
 

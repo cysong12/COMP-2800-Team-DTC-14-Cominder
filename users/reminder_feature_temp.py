@@ -44,7 +44,8 @@ class Tasks:
         self.__tasks = []
 
     def add(self, task: Task):
-        self.__tasks.append(task)       # sort input
+        # search_and_insert_task_sorted(self.__tasks, task, self.size())
+        add_to_sorted_tasks(self.__tasks, task)
 
     def remove(self, task: Task):
         self.__tasks.remove(task.get_name())
@@ -103,6 +104,20 @@ class User:
     def get_food_intolerance(self):
         return self.__food_intolerance
 
+    def set_food_intolerance(self, intolerance: list):
+        self.__food_intolerance = intolerance
+
+    def add_food_intolerance(self, *args):
+        for food in args:
+            self.__food_intolerance.append(food)
+
+    def set_food_preference(self, preferences: list):
+        self.__food_preferences = preferences
+
+    def add_food_preference(self, *args):
+        for food in args:
+            self.__food_preferences.append(food)
+
 
 class Gender(Enum):
     MALE = 1
@@ -111,13 +126,23 @@ class Gender(Enum):
     APACHE_HELICOPTER = 4
 
 
-def search_and_insert_sorted(tasks: Tasks, task: Task, size):
-    i = size - 1
-    tasks.get_tasks().append('')
-    while i >= 0 and tasks.get_tasks()[i].get_date() > task.get_date():
-        tasks.get_tasks()[i + 1] = tasks.get_tasks()[i]
-        i -= 1
-    tasks.get_tasks()[i + 1] = task
+def search_find_index(tasks: list, task: Task, start, end):
+    if end - start + 1 <= 0:
+        return start
+    else:
+        mid = start + (end - start) // 2
+        if tasks[mid].get_date() == task.get_date():
+            return mid
+        else:
+            if task.get_date() < tasks[mid].get_date():
+                return search_find_index(tasks, task, start, mid - 1)
+            else:
+                return search_find_index(tasks, task, mid + 1, end)
+
+
+def add_to_sorted_tasks(tasks: list, task: Task):
+    index = search_find_index(tasks, task, 0, len(tasks) - 1)
+    tasks.insert(index, task)
 
 
 # test
@@ -131,16 +156,16 @@ def main():
     task6 = Task('go hiking', datetime.datetime(2020, 5, 3))
     task7 = Task('go learn python', datetime.datetime(2020, 5, 9))
     user_tasks = user.get_tasks()
-    search_and_insert_sorted(user_tasks, task1, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task2, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task3, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task4, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task5, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task6, user_tasks.size())
-    search_and_insert_sorted(user_tasks, task7, user_tasks.size())
+    user_tasks.add(task1)
+    user_tasks.add(task2)
+    user_tasks.add(task3)
+    user_tasks.add(task4)
+    user_tasks.add(task5)
+    user_tasks.add(task6)
+    user_tasks.add(task7)
 
     a_task = Task('go ham', datetime.datetime(2020, 5, 7))
-    search_and_insert_sorted(user_tasks, a_task, user_tasks.size())
+    user_tasks.add(a_task)
     user_tasks.debug_print()
 
 
