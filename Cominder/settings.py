@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'webpush,'
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+WEBPUSH_SETTINGS = {
+    "VAPID_PUBLIC_KEY": "BCUyjVOw69UttJg3fjmZ0IgfdEiOQQ5JoUMa2wssUWuy3K7hM9bpeAXVcH2ir6b8KGMhZI91GQAN6HPPUbzuEMw",
+    "VAPID_PRIVATE_KEY": "AXg9PWVi_rOWCa8NKl-Tt03emcdpDuCLZ9OHny8bO6Q",
+    "VAPID_ADMIN_EMAIL": "duncankeen@gmail.com"
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -127,5 +134,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'task-tracker-home'
 
 LOGIN_URL = 'login'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
