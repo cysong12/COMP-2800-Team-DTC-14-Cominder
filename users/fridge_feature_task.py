@@ -110,6 +110,5 @@ def main():
     print(generate_recipe.generate_recipe(list(user_fridge.get_items_dict().keys())))
 
 
-
 if __name__ == "__main__":
     main()
