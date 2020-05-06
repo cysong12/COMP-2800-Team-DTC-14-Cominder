@@ -1,4 +1,4 @@
-from Cominder.users.reminder_feature_temp import User
+from users.reminder_feature_temp import User
 from enum import Enum
 import datetime
 import requests
