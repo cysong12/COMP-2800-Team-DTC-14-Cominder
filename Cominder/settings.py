@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['https://cominder.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'Apps.login.apps.UsersConfig',
+    'Apps.users.apps.UsersConfig',
     'Apps.task_tracker.apps.TaskTrackerConfig',
     'Apps.fridge.apps.FridgeConfig',
     'Apps.heat_map.apps.HeatMapConfig',
