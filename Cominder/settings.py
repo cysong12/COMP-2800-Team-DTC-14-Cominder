@@ -111,6 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+WEBPUSH_SETTINGS = {
+        "VAPID_PUBLIC_KEY": "BK_tZzR7sOYKFHNff6h-c9ISVeZEbbYB-qwvzPh6CQ29Vx_Vt1EW_fr16M5zK0l9Ze80VskXzZIaqJ7l23VLrS4",
+        "VAPID_PRIVATE_KEY": "MB2Lo-dnGjwq3VYTZJa2d8aktECnxgaKEWvdWfYSb_k",
+        "VAPID_ADMIN_EMAIL": "duncankeen@gmail@gmail.com"
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
