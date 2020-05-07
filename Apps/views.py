@@ -16,4 +16,4 @@ def landing_page(request):
 
 
 def contact(request):
-    return render(request, 'base/templates/main/contact.html')
+    return render(request, 'main/contact.html')
