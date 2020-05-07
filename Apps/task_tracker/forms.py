@@ -7,10 +7,10 @@ class TaskForm(forms.ModelForm):
     name = forms.CharField()
     task_title = forms.CharField()
     description = forms.CharField()
-    # date_start = forms.DateTimeField(default=timezone.now())
+    date_start = forms.DateTimeField()
     duration = forms.TimeField()
 
     class Meta:
         model = Task
-        # fields = ('name', 'task_title', 'description', 'date_start', 'duration')
-        fields = ('name', 'task_title', 'description', 'duration')
+        fields = ('name', 'task_title', 'description', 'date_start', 'duration')
+        # fields = ('name', 'task_title', 'description', 'duration')
