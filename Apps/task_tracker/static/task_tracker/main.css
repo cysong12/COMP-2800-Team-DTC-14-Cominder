@@ -1,0 +1,86 @@
+body {
+    background: #fafafa;
+    color: #432144;
+    margin-top: 7rem;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  .navbar-color {
+    background-color: #FFDEDE;
+  }
+  
+  .site-header .navbar-nav .nav-link {
+    color: #c88b8b;
+  }
+  
+  .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .main-content {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+    .site_logo {
+    width: 175px;
+    height: 75px;
+  }
+
+  .landing_page_navbar {
+    padding-bottom: 20px;
+  }
+
+  #landing_page_header {
+    background-image: url("../images/jumbotron_image.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  #landing_page_header h1 {
+    color: white;
+    margin-bottom: 400px;
+  }
+
+  #landing_page_header a {
+    background-color: #FFC2C2;
+    color: white;
+    text-decoration: none;
+    transition: .3s;
+    padding: 10px;
+  }
+
+  #landing_page_header a:hover {
+    color: #c88b8b;
+  }
+
+  #landing_page_body {
+    margin-top: 50px;
+  }
+
+  #landing_page_body .landing_page_nav_link {
+    color: #c88b8b;
+    transition: .3s;
+    font-size: x-large;
+  }
+
+  #landing_page_body .landing_page_nav_link:hover {
+    color: #FFC2C2;
+  }
+
+  .account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
