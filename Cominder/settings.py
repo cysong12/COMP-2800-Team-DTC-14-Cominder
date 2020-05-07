@@ -133,7 +133,7 @@ STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'task-tracker-home'
+LOGIN_REDIRECT_URL = 'feature-home'
 
 LOGIN_URL = 'login'
 
