@@ -32,8 +32,10 @@ ALLOWED_HOSTS = ['https://cominder.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'task_tracker.apps.TaskTrackerConfig',
+    'Apps.users.apps.UsersConfig',
+    'Apps.task_tracker.apps.TaskTrackerConfig',
+    'Apps.fridge.apps.FridgeConfig',
+    'Apps.heat_map.apps.HeatMapConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,11 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'webpush',
-=======
->>>>>>> parent of 8a86e5f... merge
-]
+    ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,10 +59,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Cominder.urls'
 
+TEMPLATE_DIR = (
+        os.path.join(BASE_DIR, 'Apps/templates')
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,9 +131,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = 'Apps/static/'
+
+STATICFILES_DIRS = ('Apps/static/',)
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'task-tracker-home'
+LOGIN_REDIRECT_URL = 'feature-home'
 
 LOGIN_URL = 'login'
 
