@@ -1,6 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 from Apps.task_tracker.models import Task
+from django.utils import timezone
+
+
+'''
+class Tasks(models.Model):
+    date_created = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{User.username} Tasks'
+'''
 
 
 class Profile(models.Model):
@@ -9,7 +20,3 @@ class Profile(models.Model):
     
     def __str__(self):
         return f'{self.user.username} Profile'
-
-
-class Tasks(models.Model):
-    tasks = models.ManyToOneRel(Task, on_delete=models.CASCADE)
