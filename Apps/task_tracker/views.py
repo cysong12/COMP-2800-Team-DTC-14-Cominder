@@ -1,25 +1,26 @@
 from django.shortcuts import render
 from .models import Task
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 from .forms import TaskForm
 
 
 @login_required
 def home(request):
-    if request.method == "POST":
-        form = TaskForm(request.POST or None)
-    else:
-        form = TaskForm()
-
     context = {
-        'form': form
+        'tasks': Task.objects.all()
     }
+    return render(request, 'main/home.html', context)
 
-    return render(request, 'task_tracker/home.html', context)
+class TaskListView(ListView):
+    model = Task
+    template_name = 'main/home.html'
+    context_object_name = 'tasks'
+    ordering = ['-date_posted']
 
 
 def about(request):
-    return render(request, 'task_tracker/about.html', {'title': 'About us'})
+    return render(request, 'main/about.html', {'title': 'About us'})
 
 
 def landing_page(request):

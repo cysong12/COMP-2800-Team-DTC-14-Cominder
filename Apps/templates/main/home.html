@@ -1,9 +1,15 @@
 {% extends 'base/base.html' %}
 {% block content %}
-	<h1>Does this template work??????????????/ IT DOES??????? IM SO TIRED!</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="submit">Submit</button>
-    </form>
+{% for task in tasks %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ task.user }}</a>
+                <small class="text-muted">{{ task.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ task.title }}</a></h2>
+            <p class="article-content">{{ task.description }}</p>
+        </div>
+    </article>
+{% endfor %}
 {% endblock content %}
