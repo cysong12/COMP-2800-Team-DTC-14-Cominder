@@ -32,8 +32,10 @@ ALLOWED_HOSTS = ['https://cominder.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'task_tracker.apps.TaskTrackerConfig',
+    'Apps.login.apps.UsersConfig',
+    'Apps.task_tracker.apps.TaskTrackerConfig',
+    'Apps.fridge.apps.FridgeConfig',
+    'Apps.heat_map.apps.HeatMapConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
