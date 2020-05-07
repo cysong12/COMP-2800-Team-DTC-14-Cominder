@@ -6,4 +6,10 @@
         {{ form.as_p }}
         <button type="submit" name="submit">Submit</button>
     </form>
+    {% if task.title %}
+        <div>
+            <h1>{{ task }}</h1>
+            <h1>{{ task.title }}</h1>
+        </div>
+    {% endif %}
 {% endblock content %}
