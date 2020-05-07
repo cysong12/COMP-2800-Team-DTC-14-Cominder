@@ -1,5 +1,7 @@
 """
-Set a blackout period so the user is not notified at night time.  Default blackout period is 0:00-8:00.
+WIP file to  be added to views.py
+
+Also set a blackout period so the user is not notified at night time.  Default blackout period is 0:00-8:00.
 
 notify_func is just a placeholder.
 """
