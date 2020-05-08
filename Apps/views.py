@@ -10,7 +10,7 @@ from django.db.models import Q
 def home(request):
     username = None
     day_now = datetime.now()
-    tasks = Task.objects.filter(Q(date_start__day=day_now.day))
+    tasks = Task.objects.filter(Q(date_start__day=day_now.day) & Q(user=request.user))
     if request.user.is_authenticated:
         username = request.user.username
     context = {
@@ -26,11 +26,12 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     ordering = ['date_posted']
 
+'''
     def get_queryset(self):
-        day_now = datetime.now()
         queryset = super(TaskListView, self).get_queryset()
         queryset = queryset.filter(user=self.request.user)
         return queryset
+'''
 
 
 class TaskDetailView(DetailView):
