@@ -55,7 +55,7 @@ body {
     background-color: #FFC2C2;
     color: white;
     text-decoration: none;
-    transition: .3s;
+    transition: all .3s;
     padding: 10px;
   }
 
@@ -77,12 +77,18 @@ body {
     color: #FFC2C2;
   }
 
+  /* ABOUT US */
+
   .account-img {
     height: 125px;
     width: 125px;
     margin-right: 20px;
     margin-bottom: 16px;
   }
+
+
+
+  /* NAVIGATION BAR */
 
   .navbar-custom {
     background-color: #c88b8b;
@@ -124,5 +130,54 @@ body {
 
   #dropdown-menu:hover {
     opacity: 0.5;
+  }
+
+  /* GENERAL MAIN CONTENT */
+
+  #main {
+    padding-top: 20px;
+  }
+
+  .form-group button {
+    background-color: #c88b8b;
+    border: 1px solid white;
+    color: white;
+  }
+
+  .form-group button:active:focus {
+    color: black;
+  }
+
+  .form-group button:hover {
+    border: 1px solid #c88b8b;
+    color: #c88b8b;
+    background-color: white;+
+  }
+
+  /* USER PROFILE */
+
+  .user-profile {
+    display: block;
+    margin: auto;
+  }
+
+  .user-profile-info {
+    border-radius: 20px;
+    background-color: white;
+  }
+
+  .user-profile-info a {
+    background-color: #c88b8b;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+
+  .user-profile-info a:hover {
+    text-decoration: none;
+    border: 1px solid #c88b8b;
+    color: #c88b8b;
+    background-color: white;
   }
 
