@@ -26,6 +26,7 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     ordering = ['date_posted']
 
+
 '''
     def get_queryset(self):
         queryset = super(TaskListView, self).get_queryset()
