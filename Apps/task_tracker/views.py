@@ -19,10 +19,7 @@ def home(request):
             messages.error(request, "Please correct the errors marked in red.")
     else:
         form = TaskForm()
-    try:
-        tasks = Task.objects.filter(username='admin')
-    except Exception as e:
-        print(e)
+
     context = {
         'form': form,
         'task': task,
