@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task
 from django.contrib.auth.decorators import login_required
