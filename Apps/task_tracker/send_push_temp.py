@@ -1,6 +1,10 @@
 """Temp code for push notifications.
 
 To be added to views.py"""
+from django.shortcuts import render
+from .models import Task
+from django.contrib.auth.decorators import login_required
+from .forms import TaskForm
 
 from django.http.response import JsonResponse, HttpResponse
 from django.views.decorators.http import require_GET, require_POST
@@ -10,10 +14,23 @@ from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification
 import json
 
+from users.models import User
+from task.models import Task
 
+
+@login_required
 @require_GET
 def home(request):
-    """already in views, delete"""
+    if request.method == "POST":
+        form = TaskForm(request.POST or None)
+    else:
+        form = TaskForm()
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'task_tracker/home.html', context)
 
 
 @require_POST
@@ -34,4 +51,3 @@ def send_push(request):
         return JsonResponse(status=200, data={"message": "Web push successful"})
     except TypeError:
         return JsonResponse(status=500, data={"message": "An error occurred"})
-
