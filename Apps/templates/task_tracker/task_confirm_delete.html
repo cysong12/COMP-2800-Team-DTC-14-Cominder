@@ -13,9 +13,9 @@
                 <button class="btn btn-outline-danger" type="submit">
                     Yes, Delete
                 </button>
-                <button class="btn btn-outline-secondary" onclick="location.href='{% url 'task-detail' object.id %}'">
+                <a href="{% url 'task-tracker-home' %}">
                     Cancel
-                </button>
+                </a>
             </div>
         </form>
     </div>
