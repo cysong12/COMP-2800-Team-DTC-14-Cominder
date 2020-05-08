@@ -1,16 +1,30 @@
 {% extends 'base/base.html' %}
 {% block content %}
+    <button type="button" class="btn btn-success" onclick="location.href='{% url 'task-create' %}'">New task</button>
 <legend class="border-bottom mb-4">
     Tasks
 </legend>
 {% for task in tasks %}
-<div class="card mb-3">
-    <div class="row no-gutters">
-        <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
-        <p>Description: {{ task.description }}</p>
-        <p>Date Posted: {{ task.date_posted }}</p>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+                </div>
+                <div class="col-4">
+                    <p>Date Posted: {{ task.date_posted }}</p>
+                </div>
+                <div class="col-4">
+                    <p>Description: {{ task.description }}</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 {% endfor %}
-</div>
 {% endblock content %}

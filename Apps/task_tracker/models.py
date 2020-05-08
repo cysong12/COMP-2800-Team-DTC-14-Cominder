@@ -9,8 +9,7 @@ class Task(models.Model):
     description = models.TextField(null=True, blank=True)
     date_posted = models.DateTimeField(default=timezone.now)
     duration = models.TimeField(default=timezone.now)
-    username = User.username
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.title}"

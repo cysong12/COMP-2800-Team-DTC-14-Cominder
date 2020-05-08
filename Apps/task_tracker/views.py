@@ -6,13 +6,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
-
 @login_required
 def home(request):
+    tasks = Task.objects.all()
     context = {
-        'tasks': Task.objects.filter(username=request.user.username)
+        'tasks': tasks,
     }
     return render(request, 'task_tracker/home.html', context)
+
 
 class TaskListView(ListView):
     model = Task
@@ -20,8 +21,15 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     ordering = ['-date_posted']
 
+    def get_queryset(self):
+        queryset = super(TaskListView, self).get_queryset()
+        queryset = queryset.filter(user=self.request.user)
+        return queryset
+
+
 class TaskDetailView(DetailView):
     model = Task
+
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
@@ -31,6 +39,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
@@ -45,6 +54,7 @@ class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         if self.request.user == task.user:
             return True
         return False
+
 
 class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Task
