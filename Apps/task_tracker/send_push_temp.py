@@ -14,8 +14,10 @@ from django.views.decorators.csrf import csrf_exempt
 from webpush import send_user_notification
 import json
 
-from users.models import User
 from task.models import Task
+import datetime
+import sched
+import time
 
 
 @login_required
@@ -43,11 +45,14 @@ def send_push(request):
         if 'head' not in data or 'body' not in data or 'id' not in data:
             return JsonResponse(status=400, data={"message": "Invalid data format"})
 
-        user_id = data['id']
-        user = get_object_or_404(User, pk=user_id)
-        payload = {'head': data['head'], 'body': data['body']}
-        send_user_notification(user=user, payload=payload, ttl=1000)
+        user = get_object_or_404(Task.user, pk=1)
+        payload = {'head': Task.task_title, 'body': Task.description}
+        push_notification = send_user_notification(user=user, payload=payload, ttl=1000)
 
+        schedule = sched.scheduler(time.localtime, time.sleep)
+        schedule.enterabs(time.strptime(Task.start_time), 0, push_notification)
+        schedule.run()
         return JsonResponse(status=200, data={"message": "Web push successful"})
+
     except TypeError:
         return JsonResponse(status=500, data={"message": "An error occurred"})
