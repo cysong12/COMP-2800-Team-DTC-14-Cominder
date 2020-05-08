@@ -83,10 +83,15 @@ body {
     height: 125px;
     width: 125px;
     margin-right: 20px;
-    margin-bottom: 16px;
   }
 
+  .card {
+    border: 2px solid #c88b8b;
+  }
 
+  .card img {
+    border-bottom: 2px solid #c88b8b;
+  }
 
   /* NAVIGATION BAR */
 
@@ -180,4 +185,3 @@ body {
     color: #c88b8b;
     background-color: white;
   }
-
