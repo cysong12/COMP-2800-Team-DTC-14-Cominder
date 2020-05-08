@@ -85,12 +85,21 @@ body {
     margin-right: 20px;
   }
 
+  .card-deck {
+    padding-top: 20px;
+  }
+
   .card {
     border: 2px solid #c88b8b;
   }
 
   .card img {
     border-bottom: 2px solid #c88b8b;
+  }
+
+  .about-header {
+    border-bottom: 1px solid #c88b8b;
+    padding-bottom: 20px;
   }
 
   /* NAVIGATION BAR */
@@ -184,4 +193,44 @@ body {
     border: 1px solid #c88b8b;
     color: #c88b8b;
     background-color: white;
+  }
+
+  /* CONTACT US */
+
+  .contact-us .card-img-overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .contact-us h1 {
+    color: #c88b8b;
+    text-shadow: 2px 0.5px 2px #ffffff;
+  }
+
+  .contact-us .card-text {
+    color: #efefef;
+  }
+
+  .contact-us .card-title {
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+  }
+
+  .contact-us a {
+    color: #FFC2C2;
+    transition: all 0.3s;
+  }
+
+  .contact-us a:hover {
+    text-decoration: none;
+    color: white;
+  }
+
+  .contact-links {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .contact-links a {
+    color: black;
   }
