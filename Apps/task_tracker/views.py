@@ -43,6 +43,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
+    success_url = '/task-tracker/home'
     fields = ['title', 'description']
 
     def form_valid(self, form):
