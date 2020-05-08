@@ -15,4 +15,8 @@
             <h1>{{ task.duration }}</h1>
         </div>
     {% endif %}
+    {% for task in tasks %}
+        <h1>{{ task.title }}</h1>
+    {% endfor %}
+
 {% endblock content %}

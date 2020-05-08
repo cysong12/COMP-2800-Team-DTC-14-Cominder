@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .models import Task
+from .models import Task, Tasks
 from django.contrib.auth.decorators import login_required
 from .forms import TaskForm
 
@@ -10,7 +10,7 @@ from .forms import TaskForm
 def home(request):
     task = ''
     if request.method == "POST":
-        form = TaskForm(request.POST or None)
+        form = TaskForm(request.POST or None, instance=Tasks)
         if form.is_valid():
             task = form.save()
         else:
@@ -20,7 +20,8 @@ def home(request):
 
     context = {
         'form': form,
-        'task': task
+        'task': task,
+        'tasks': Tasks.objects.all()
     }
 
     return render(request, 'task_tracker/home.html', context)

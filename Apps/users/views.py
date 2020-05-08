@@ -21,6 +21,7 @@ def register(request):
 def profile(request):
     return render(request, 'users/profile.html')
 
+
 @login_required
 def update_profile(request):
     if request.method == 'POST':
