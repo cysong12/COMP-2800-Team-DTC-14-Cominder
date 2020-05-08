@@ -4,27 +4,32 @@
     <legend class="border-bottom mb-4">
         Tasks
     </legend>
-{% for task in tasks %}
-    <div class="container">
-        <div class="card mb-3">
-            <div class="row no-gutters">
-                <div class="col-2">
-                <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
-                </div>
-                <div class="col-4">
-                    <p>Date Start: {{ task.date_start }}</p>
-                </div>
-                <div class="col-4">
-                    <p>Description: {{ task.description }}</p>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+    {% if tasks %}
+        {% for task in tasks %}
+            <div class="container">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-2">
+                        <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+                        </div>
+                        <div class="col-4">
+                            <p>Date Start: {{ task.date_start }}</p>
+                        </div>
+                        <div class="col-4">
+                            <p>Description: {{ task.description }}</p>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-warning" onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-{% endfor %}
+        {% endfor %}
+    {% endif %}
+    {% if not tasks %}
+        No tasks! Create tasks to see your tasks here.
+    {% endif %}
 {% endblock content %}

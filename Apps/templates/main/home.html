@@ -5,6 +5,7 @@
     <legend>Hello {{ username }}!</legend>
     <legend>Today's tasks</legend>
     <div class="container">
+    {% if tasks %}
         {% for task in tasks %}
         <div class="card mb-3">
             <div class="row no-gutters">
@@ -26,6 +27,14 @@
             </div>
         </div>
         {% endfor %}
+    {% endif %}
+    {% if not tasks %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                No tasks for today!
+            </div>
+        </div>
+    {% endif %}
     </div>
     <legend>Apps</legend>
     <div class="container">
