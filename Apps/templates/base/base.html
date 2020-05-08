@@ -39,27 +39,32 @@
                             <a href="{% url 'feature-home' %}">Home</a>
                         </li>
                         <li>
-                            <a href="{% url 'logout' %}">Logout</a>
-                        </li>
-                        <li>
                             <a href="{% url 'feature-about' %}">About Us</a>
                         </li>
-                        <!-- Placeholder for profile for now -->
+                        <li>
+                            <a href="{% url 'feature-contact' %}">Contact</a>
+                        </li>
                         <li>
                             <a href="{% url 'profile' %}">Profile</a>
                         </li>
+                        <li>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
                     {% else %}
                         <li>
-                            <a href="{% url 'feature-landing' %}">Home</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'login' %}">Login</a>
+                            <a href="{% url 'feature-home' %}">Home</a>
                         </li>
                         <li>
                             <a href="{% url 'feature-about' %}">About Us</a>
                         </li>
                         <li>
                             <a href="{% url 'feature-contact' %}">Contact</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
