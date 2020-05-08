@@ -1,10 +1,18 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from Apps.task_tracker.models import Task
 
 
 @login_required
 def home(request):
-    return render(request, 'main/home.html')
+    username = None
+    tasks = Task.objects.filter()
+    if request.user.is_authenticated:
+        username = request.user.username
+    context = {
+        'username': username
+    }
+    return render(request, 'main/home.html', context)
 
 
 def about(request):

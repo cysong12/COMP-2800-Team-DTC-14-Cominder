@@ -1,17 +1,44 @@
 {% extends 'base/base.html' %}
+{% include 'task_tracker/home.html' %}
 {% load static %}
 {% block content %}
-<div class="container"></div>
-	<h1>URL paths test</h1>
-
-    <div class="row no-gutters bg-light position-relative">
-      <div class="col-md-6 mb-md-0 p-md-4">
-        <img src="{% static 'main/images/test.jpeg' %}" class="w-100" alt="task-feature">
-      </div>/
-      <div class="col-md-6 position-static p-4 pl-md-0">
-        <h5 class="mt-0">Columns with stretched link</h5>
-        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-        <a href="{% url 'task-tracker-home' %}" class="stretched-link">Task Feature</a>
-      </div>
+    <legend>Hello {{ username }}!</legend>
+    <legend>Today's tasks</legend>
+    <div class="container">
+        {% for task in tasks %}
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+                </div>
+                <div class="col-4">
+                    <p>Date Posted: {{ task.date_posted }}</p>
+                </div>
+                <div class="col-4">
+                    <p>Description: {{ task.description }}</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <legend>Apps</legend>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                test1
+            </div>
+            <div class="col">
+                test2
+            </div>
+            <div class="col">
+                test3
+            </div>
+        </div>
     </div>
 {% endblock content %}
