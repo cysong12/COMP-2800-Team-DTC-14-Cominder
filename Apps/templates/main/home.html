@@ -12,7 +12,7 @@
                 <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
                 </div>
                 <div class="col-4">
-                    <p>Date Posted: {{ task.date_posted }}</p>
+                    <p>Date Start: {{ task.date_start }}</p>
                 </div>
                 <div class="col-4">
                     <p>Description: {{ task.description }}</p>
@@ -31,7 +31,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                test1
+                <a href='{% url 'task-tracker-home' %}'>Task Tracker</a>
             </div>
             <div class="col">
                 test2

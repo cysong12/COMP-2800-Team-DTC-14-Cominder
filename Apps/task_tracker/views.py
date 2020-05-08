@@ -19,7 +19,7 @@ class TaskListView(ListView):
     model = Task
     template_name = 'task_tracker/home.html'
     context_object_name = 'tasks'
-    ordering = ['-date_posted']
+    ordering = ['date_posted']
 
     def get_queryset(self):
         queryset = super(TaskListView, self).get_queryset()
@@ -34,7 +34,7 @@ class TaskDetailView(DetailView):
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     success_url = '/task-tracker/home'
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'date_start']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -44,7 +44,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
     success_url = '/task-tracker/home'
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'date_start']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
