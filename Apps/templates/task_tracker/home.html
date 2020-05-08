@@ -1,23 +1,16 @@
 {% extends 'base/base.html' %}
 {% block content %}
-	<h1>Task tracker test</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="submit">Submit</button>
-    </form>
-    {% if task.title %}
-        <div>
-            <h1>{{ username }}</h1>
-            <h1>{{ task.title }}</h1>
-            <h1>{{ task.description }}</h1>
-            <h1>{{ task.date_start }}</h1>
-            <h1>{{ task.date_posted }}</h1>
-            <h1>{{ task.duration }}</h1>
-        </div>
-    {% endif %}
-    {% for task in tasks %}
-        <h1>{{ task.title }}</h1>
-    {% endfor %}
-
+<legend class="border-bottom mb-4">
+    Tasks
+</legend>
+{% for task in tasks %}
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+        <p>Description: {{ task.description }}</p>
+        <p>Date Posted: {{ task.date_posted }}</p>
+    </div>
+</div>
+{% endfor %}
+</div>
 {% endblock content %}
