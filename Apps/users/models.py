@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from Apps.task_tracker.models import Task
 from django.utils import timezone
 
 

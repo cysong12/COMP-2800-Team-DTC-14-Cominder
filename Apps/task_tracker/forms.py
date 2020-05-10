@@ -1,5 +1,5 @@
 from django import forms
-from Apps.task_tracker.models import Task
+from Apps.task_tracker.models import CustomTask
 from django.utils import timezone
 
 
@@ -10,5 +10,5 @@ class TaskForm(forms.ModelForm):
     duration = forms.TimeField()
 
     class Meta:
-        model = Task
+        model = CustomTask
         fields = ('title', 'description', 'date_start', 'duration')

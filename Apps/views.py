@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from Apps.task_tracker.models import Task
+from Apps.task_tracker.models import CustomTask
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from datetime import datetime
 from django.db.models import Q
@@ -10,7 +10,7 @@ from django.db.models import Q
 def home(request):
     username = None
     day_now = datetime.now()
-    tasks = Task.objects.filter(Q(date_start__day=day_now.day) & Q(user=request.user))
+    tasks = CustomTask.objects.filter(Q(date_start__day=day_now.day) & Q(user=request.user))
     if request.user.is_authenticated:
         username = request.user.username
     context = {
@@ -20,8 +20,8 @@ def home(request):
     return render(request, 'main/home.html', context)
 
 
-class TaskListView(ListView):
-    model = Task
+class CustomTaskListView(ListView):
+    model = CustomTask
     template_name = 'main/home.html'
     context_object_name = 'tasks'
     ordering = ['date_posted']
@@ -35,8 +35,8 @@ class TaskListView(ListView):
 '''
 
 
-class TaskDetailView(DetailView):
-    model = Task
+class CustomTaskDetailView(DetailView):
+    model = CustomTask
 
 
 def about(request):

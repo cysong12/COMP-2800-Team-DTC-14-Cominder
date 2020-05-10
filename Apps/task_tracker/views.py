@@ -1,38 +1,38 @@
 from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Task
+from .models import CustomTask
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 @login_required
 def home(request):
-    tasks = Task.objects.all()
+    tasks = CustomTask.objects.all()
     context = {
         'tasks': tasks,
     }
     return render(request, 'task_tracker/home.html', context)
 
 
-class TaskListView(ListView):
-    model = Task
+class CustomTaskListView(ListView):
+    model = CustomTask
     template_name = 'task_tracker/home.html'
     context_object_name = 'tasks'
     ordering = ['date_posted']
 
     def get_queryset(self):
-        queryset = super(TaskListView, self).get_queryset()
+        queryset = super(CustomTaskListView, self).get_queryset()
         queryset = queryset.filter(user=self.request.user)
         return queryset
 
 
-class TaskDetailView(DetailView):
-    model = Task
+class CustomTaskDetailView(DetailView):
+    model = CustomTask
 
 
-class TaskCreateView(LoginRequiredMixin, CreateView):
-    model = Task
+class CustomTaskCreateView(LoginRequiredMixin, CreateView):
+    model = CustomTask
     success_url = '/task-tracker/home'
     fields = ['title', 'description', 'date_start']
 
@@ -41,8 +41,8 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    model = Task
+class CustomTaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = CustomTask
     success_url = '/task-tracker/home'
     fields = ['title', 'description', 'date_start']
 
@@ -57,8 +57,8 @@ class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
-class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
-    model = Task
+class CustomTaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = CustomTask
     success_url = '/task-tracker/home'
 
     def test_func(self):
