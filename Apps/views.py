@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from Apps.task_tracker.models import CustomTask
+from Apps.forums.models import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from datetime import datetime
 from django.db.models import Q
@@ -13,9 +14,12 @@ def home(request):
     tasks = CustomTask.objects.filter(Q(date_start__day=day_now.day) & Q(user=request.user))
     if request.user.is_authenticated:
         username = request.user.username
+    posts = Post.objects.all()
     context = {
         'username': username,
-        'tasks': tasks
+        'tasks': tasks,
+        'test1': 'hello',
+        'posts': posts,
     }
     return render(request, 'main/home.html', context)
 

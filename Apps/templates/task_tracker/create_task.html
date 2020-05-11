@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <legend>Tasks based on your preference:</legend>
+	<div class="main-content row mb-5">
+        {% for task in tasks %}
+            <div class="col mr-1">
+                <button>{{ task.title }}</button>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row mb-5">
+        <button>Generate tasks</button>
+    </div>
+    <div class="row">
+        <button onclick="location.href='{% url 'custom-task-create' %}'">Make custom task</button>
+    </div>
+{% endblock content %}

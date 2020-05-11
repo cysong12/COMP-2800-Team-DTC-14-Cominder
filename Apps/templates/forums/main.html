@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <legend class="border-bottom mb-4">
+        Posts
+    </legend>
+    {% if posts %}
+        {% for post in posts %}
+            <div class="container">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col">
+                            <p>Topic Category: {{ post.title.capitalize }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col">
+                            <p>Posted by: {{ post.posted_by }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <p>Date Start: {{ post.posted_date }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <p>Description: {{ post.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

@@ -2,7 +2,18 @@
 {% include 'task_tracker/home.html' %}
 {% load static %}
 {% block content %}
-    <legend>Hello {{ username }}!</legend>
+    <legend class="mb-2">Hello {{ username }}!</legend>
+    <legend>Apps</legend>
+    <div class="container mb-2">
+        <div class="row">
+            <div class="col">
+                <a href='{% url 'task-tracker-home' %}'>Task Tracker</a>
+            </div>
+            <div class="col">
+                <a href="{% url 'forums-main' %}">Forums</a>
+            </div>
+        </div>
+    </div>
     <legend>Today's tasks</legend>
     <div class="container">
     {% if tasks %}
@@ -36,18 +47,40 @@
         </div>
     {% endif %}
     </div>
-    <legend>Apps</legend>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href='{% url 'task-tracker-home' %}'>Task Tracker</a>
+    <legend>Forum Posts</legend>
+    <div class="container mb-2">
+        {% for post in posts %}
+            <div class="container">
+                <div class="card mb-3">
+                    <div class="row no-gutters">
+                        <div class="col">
+                            <p>Topic Category: {{ post.title.capitalize }}</p>
+                        </div>
+                        <div class="col">
+                            img or video here to share accomplishment for said task.
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col">
+                            <p>Posted by: {{ post.posted_by }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <p>Date Start: {{ post.posted_date }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-4">
+                            <p>Description: {{ post.description }}</p>
+                        </div>
+                    </div>
+                    <div class="row no-gutters">
+                        <p class="col-3">Likes: {{ post.likes }}</p>
+                        <button class="col-7">Like!</button>
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                What's in my Fridge? (Work in progress)
-            </div>
-            <div class="col">
-                Map (Work in progress)
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock content %}

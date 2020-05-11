@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="main-content user-profile-change-info">
+    <a class="border-bottom mb-4" href="{% url 'update-profile' %}">
+        Change Profile Information.
+    </a>
+</div>
+
+{% endblock content %}

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import CustomTask
+from .models import CustomTask, BuiltInTask
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -15,16 +15,24 @@ def home(request):
     return render(request, 'task_tracker/home.html', context)
 
 
-class CustomTaskListView(ListView):
-    model = CustomTask
-    template_name = 'task_tracker/home.html'
-    context_object_name = 'tasks'
-    ordering = ['date_posted']
+def create_task(request):
+    BuiltInTask.objects.all().delete()
+    test = BuiltInTask.objects.create(title="Jog", description="Go for a jog", category="SPORTS")
+    test.save()
+    test = BuiltInTask.objects.create(title="Cooking", description="Go cook something", category="COOK")
+    test.save()
+    test = BuiltInTask.objects.create(title="Game", description="Go play games", category="GAMES")
+    test.save()
+    built_in_tasks = BuiltInTask.objects.all()
+    context = {
+        'tasks': built_in_tasks
+    }
+    return render(request, 'task_tracker/create_task.html', context)
 
-    def get_queryset(self):
-        queryset = super(CustomTaskListView, self).get_queryset()
-        queryset = queryset.filter(user=self.request.user)
-        return queryset
+
+def generate_built_in_tasks():
+    built_in_tasks = None
+    pass
 
 
 class CustomTaskDetailView(DetailView):

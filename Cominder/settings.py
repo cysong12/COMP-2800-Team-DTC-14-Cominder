@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'Apps.task_tracker.apps.TaskTrackerConfig',
     'Apps.fridge.apps.FridgeConfig',
     'Apps.heat_map.apps.HeatMapConfig',
+    'Apps.forums.apps.ForumsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -61,6 +62,10 @@ ROOT_URLCONF = 'Cominder.urls'
 
 TEMPLATE_DIR = (
         os.path.join(BASE_DIR, 'Apps/templates')
+)
+
+FIXTURE_DIR = (
+    os.path.join(BASE_DIR, 'Apps/fixtures')
 )
 
 TEMPLATES = [

@@ -1,0 +1,32 @@
+[
+  {
+    "model": "forums.post",
+    "pk": 1,
+    "fields": {
+      "title": "hockey",
+      "posted_by": 1,
+      "description": "Score 100 pucks for practice",
+      "sub_forum": 1
+    }
+  },
+  {
+    "model": "forums.post",
+    "pk": 2,
+    "fields": {
+      "title": "biking",
+      "posted_by": 1,
+      "description": "Bike 100 miles",
+      "sub_forum": 1
+    }
+  },
+  {
+    "model": "forums.post",
+    "pk": 3,
+    "fields": {
+      "title": "jog",
+      "posted_by": 1,
+      "description": "jog till I reach Houston",
+      "sub_forum": 1
+    }
+  }
+]

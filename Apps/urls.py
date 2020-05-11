@@ -9,6 +9,7 @@ urlpatterns = [
     path('about/', main_views.about, name='feature-about'),
     path('contact/', main_views.contact, name='feature-contact'),
     path('task-tracker/', include('Apps.task_tracker.urls')),
+    path('forums/', include('Apps.forums.urls')),
 ]
 
 if settings.DEBUG:
