@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.contrib.auth.decorators import login_required
 from Apps.task_tracker.models import CustomTask
 from Apps.forums.models import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from datetime import datetime
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
 
 @login_required
@@ -22,6 +23,14 @@ def home(request):
         'posts': posts,
     }
     return render(request, 'main/home.html', context)
+
+
+def clicked_like(request):
+    if request.POST:
+        liked_post_id = request.POST.get()
+        post = Post.objects.get(id=liked_post_id)
+        post.likes += 1
+        post.save(update_fields=["likes"])
 
 
 class CustomTaskListView(ListView):

@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact/', main_views.contact, name='feature-contact'),
     path('task-tracker/', include('Apps.task_tracker.urls')),
     path('forums/', include('Apps.forums.urls')),
+    path('heat-map/', include('Apps.heat_map.urls')),
 ]
 
 if settings.DEBUG:
