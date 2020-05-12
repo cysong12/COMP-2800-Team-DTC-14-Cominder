@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime
-from Apps.task_tracker.models import BuiltInTask
+from Apps.task_tracker.models import *
 
 
 # Create your models here.
@@ -29,5 +29,5 @@ class Comment(models.Model):
 
 
 def testing():
-    for categories in BuiltInTask.CATEGORY_CHOICES:
+    for categories in Category.CATEGORY_CHOICES:
         SubForum(categories[1]).save()

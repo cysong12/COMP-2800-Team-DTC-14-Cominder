@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import CustomTask
+from .models import Task
 
-admin.site.register(CustomTask)
+admin.site.register(Task)
