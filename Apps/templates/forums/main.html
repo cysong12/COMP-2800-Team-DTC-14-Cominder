@@ -9,7 +9,7 @@
                 <div class="card mb-3">
                     <div class="row no-gutters">
                         <div class="col">
-                            <p>Topic Category: {{ post.title.capitalize }}</p>
+                            <p>Topic Category: <a href="{% url 'post-detail' post.id %}">{{ post.sub_forum.category.category.capitalize }}</a></p>
                         </div>
                     </div>
                     <div class="row no-gutters">

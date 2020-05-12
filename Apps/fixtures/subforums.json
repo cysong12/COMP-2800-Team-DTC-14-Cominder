@@ -1,0 +1,29 @@
+[
+  {
+    "model": "forums.subforum",
+    "pk": 1,
+    "fields": {
+      "name": "sports",
+      "description": "Do sports",
+      "category": 1
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 2,
+    "fields": {
+      "name": "cooking",
+      "description": "Go cook",
+      "category": 2
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 3,
+    "fields": {
+      "name": "gaming",
+      "description": "Go game",
+      "category": 3
+    }
+  }
+]

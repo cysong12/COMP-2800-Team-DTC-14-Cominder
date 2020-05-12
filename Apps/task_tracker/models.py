@@ -6,17 +6,17 @@ from datetime import datetime
 
 
 class Category(models.Model):
-    SPORTS = 'sports'
-    GAMES = 'games'
-    COOKING = 'cooking'
-    CUSTOM = 'custom'
+    SPORTS = 'Sports'
+    GAMES = 'Games'
+    COOKING = 'Cook'
+    CUSTOM = 'Custom'
     CATEGORY_CHOICES = [
         (SPORTS, 'Sports'),
         (GAMES, 'Games'),
         (COOKING, 'Cook'),
         (CUSTOM, 'Custom')
     ]
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default=CUSTOM)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, unique=True, default=CUSTOM)
 
 
 class Task(models.Model):

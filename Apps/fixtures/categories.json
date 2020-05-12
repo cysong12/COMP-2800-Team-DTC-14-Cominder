@@ -1,26 +1,30 @@
 [
   {
-    "model": "forums.subforum",
+    "model": "task_tracker.Category",
     "pk": 1,
     "fields": {
-      "name": "sports",
-      "description": "Do sports"
+      "category": "Sports"
     }
   },
   {
-    "model": "forums.subforum",
+    "model": "task_tracker.Category",
     "pk": 2,
     "fields": {
-      "name": "cooking",
-      "description": "Go cook"
+      "category": "Cook"
     }
   },
   {
-    "model": "forums.subforum",
+    "model": "task_tracker.Category",
     "pk": 3,
     "fields": {
-      "name": "gaming",
-      "description": "Go game"
+      "category": "Games"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 4,
+    "fields": {
+      "category": "Custom"
     }
   }
 ]

@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.forums, name='forums-main'),
     path('posts/', views.PostList.as_view(), name='user-preference-subforums-posts'),
+    path('home/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
 ]
 
 if settings.DEBUG:

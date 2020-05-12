@@ -18,6 +18,10 @@ def forums(request):
 
 
 class PostList(ListView):
-    model = Post
-    context_object_name = 'posts'
+    model = SubForum
+    context_object_name = 'subforums'
     template_name = 'forums/main.html'
+
+
+class PostDetailView(DetailView):
+    model = Post

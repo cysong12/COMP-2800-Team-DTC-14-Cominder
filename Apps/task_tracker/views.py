@@ -9,20 +9,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 @login_required
 def home(request):
     tasks = Task.objects.all()
+    categories = Category.objects.all()
     context = {
         'tasks': tasks,
+        'categories': categories,
     }
     return render(request, 'task_tracker/home.html', context)
 
 
 def create_task(request):
     Task.objects.all().delete()
-    test = Task.objects.create(title="Jog", description="Go for a jog", category="SPORTS")
-    test.save()
-    test = Task.objects.create(title="Cooking", description="Go cook something", category="COOK")
-    test.save()
-    test = Task.objects.create(title="Game", description="Go play games", category="GAMES")
-    test.save()
     built_in_tasks = Task.objects.all()
     context = {
         'tasks': built_in_tasks

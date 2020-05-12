@@ -28,5 +28,15 @@
       "description": "jog till I reach Houston",
       "sub_forum": 1
     }
+  },
+    {
+    "model": "forums.post",
+    "pk": 4,
+    "fields": {
+      "title": "cook lasagna",
+      "posted_by": 1,
+      "description": "feed garfield",
+      "sub_forum": 2
+    }
   }
 ]
