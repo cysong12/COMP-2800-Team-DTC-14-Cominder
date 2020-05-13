@@ -11,12 +11,10 @@ class TaskCreateForm(forms.ModelForm):
 
 
 class TaskCompleteForm(forms.ModelForm):
-    #title = forms.CharField(max_length=50)
-    #description = forms.CharField(max_length=1000)
-
     class Meta:
         model = Post
-        fields = ['title', 'description', 'sub_forum']
+        fields = ['title', 'media', 'description', 'sub_forum']
+
 
 '''
 class Post(models.Model):

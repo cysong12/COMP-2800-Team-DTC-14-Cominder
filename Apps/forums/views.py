@@ -12,10 +12,6 @@ def forums(request):
     subforums = SubForum.objects.all()
     posts = Post.objects.all()
     preferences = Profile.objects.get(user=request.user)
-    # add_pref = Category.objects.get(category='Sports')
-    # preferences.preferences.add(add_pref)
-
-    # preferences = Profile.objects.filter(user=request.user)
 
     context = {
         'subforums': subforums,
@@ -50,7 +46,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
-    success_url = '/forums/home'
+    success_url = '/forums/'
 
     def test_func(self):
         return True
