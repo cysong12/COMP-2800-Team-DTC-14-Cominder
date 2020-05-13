@@ -5,13 +5,15 @@ from datetime import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
+from django.db.models import Q
 # Create your views here.
 
 
 def forums(request):
-    subforums = SubForum.objects.all()
     posts = Post.objects.all()
     preferences = Profile.objects.get(user=request.user)
+    subforums = SubForum.objects.filter(category__profile__user=request.user)
 
     context = {
         'subforums': subforums,
@@ -22,6 +24,12 @@ def forums(request):
 
 
 class PostList(ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'forums/main.html'
+
+
+class SubforumList(ListView):
     model = SubForum
     context_object_name = 'subforums'
     template_name = 'forums/main.html'

@@ -2,7 +2,7 @@
 {% block content %}
     <button type="button" class="btn btn-success mb-5" onclick="location.href='{% url 'task-create' %}'">New task</button>
     <legend class="border-bottom mb-4">
-        Tasks
+        Ongoing Tasks
     </legend>
     {% if tasks %}
         {% for task in tasks %}
