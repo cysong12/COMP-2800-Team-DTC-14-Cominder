@@ -6,17 +6,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import *
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 
 @login_required
 def home(request):
-    tasks = Task.objects.all()
+    tasks = Task.objects.filter(Q(completed=True))
     categories = Category.objects.all()
     context = {
         'tasks': tasks,
         'categories': categories,
     }
     return render(request, 'task_tracker/home.html', context)
+
 
 '''class Post(models.Model):
     title = models.CharField(max_length=20)
@@ -40,9 +42,9 @@ def complete(request, pk):
     if request.method == "POST":
         form = TaskCompleteForm(request.POST)
         if form.is_valid():
-            task_instance.completed = True
             form_response = form.cleaned_data
             post_created = task_complete_form_to_creating_post(request, form_response)
+            task_instance.completed = True
             return redirect('post-detail', pk=post_created.pk)
     else:
         form = TaskCompleteForm()

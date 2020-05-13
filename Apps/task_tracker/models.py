@@ -30,7 +30,7 @@ class Task(models.Model):
     date_posted = models.DateTimeField(default=datetime.now)
     duration = models.TimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    completed = False
+    completed = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
         return f"{self.title}"
