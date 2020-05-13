@@ -13,6 +13,9 @@ class SubForum(models.Model):
     description = models.CharField(max_length=200)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Post(models.Model):
     title = models.CharField(max_length=20)
@@ -23,9 +26,15 @@ class Post(models.Model):
     # file = models.FileField(upload_to=settings.MEDIA_ROOT, null=True, verbose_name="")
     sub_forum = models.ForeignKey(SubForum, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.title}"
+
 
 class Comment(models.Model):
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     posted_date = datetime.now()
     message = models.CharField(max_length=500)
     on_post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.posted_by}"

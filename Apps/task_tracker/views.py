@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .forms import *
 
 
 @login_required
@@ -17,32 +18,19 @@ def home(request):
     return render(request, 'task_tracker/home.html', context)
 
 
-def create_task(request):
-    Task.objects.all().delete()
-    built_in_tasks = Task.objects.all()
-    context = {
-        'tasks': built_in_tasks
-    }
-    return render(request, 'task_tracker/create_task.html', context)
+class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
+    success_url = '/task-tracker/home'
+    fields = ['title', 'category', 'description', 'date_start']
 
-
-def generate_built_in_tasks():
-    built_in_tasks = None
-    pass
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.fields['category'] = Category.category
+        return super().form_valid(form)
 
 
 class TaskDetailView(DetailView):
     model = Task
-
-
-class TaskCreateView(LoginRequiredMixin, CreateView):
-    model = Task
-    success_url = '/task-tracker/home'
-    fields = ['title', 'description', 'date_start']
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

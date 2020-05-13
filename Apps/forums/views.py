@@ -25,3 +25,15 @@ class PostList(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    pass
+
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/forums/home'
+
+    def test_func(self):
+        return True

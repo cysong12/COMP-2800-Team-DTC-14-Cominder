@@ -18,6 +18,9 @@ class Category(models.Model):
     ]
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, unique=True, default=CUSTOM)
 
+    def __str__(self):
+        return f"{self.category}"
+
 
 class Task(models.Model):
     title = models.CharField(max_length=20)
@@ -27,6 +30,7 @@ class Task(models.Model):
     date_posted = models.DateTimeField(default=datetime.now)
     duration = models.TimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    completed = False
 
     def __str__(self):
         return f"{self.title}"

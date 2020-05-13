@@ -7,6 +7,8 @@ urlpatterns = [
     path('', views.forums, name='forums-main'),
     path('posts/', views.PostList.as_view(), name='user-preference-subforums-posts'),
     path('home/<int:pk>/', views.PostDetailView.as_view(), name='post-detail'),
+    path('home/<int:pk>/update', views.PostUpdateView.as_view(), name='post-detail'),
+    path('home/<int:pk>/delete', views.PostDeleteView.as_view(), name='post-detail'),
 ]
 
 if settings.DEBUG:
