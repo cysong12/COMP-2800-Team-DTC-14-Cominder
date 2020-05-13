@@ -3,6 +3,9 @@
     <legend class="border-bottom mb-4">
         Posts
     </legend>
+    {% for preference in preferences.preferences.all %}
+        <h1>{{ preference }}</h1>
+    {% endfor %}
     {% if posts %}
         {% for post in posts %}
             <div class="container">

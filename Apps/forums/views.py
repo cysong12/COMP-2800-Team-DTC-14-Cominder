@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from Apps.users.models import *
 from datetime import datetime
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
@@ -10,9 +11,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 def forums(request):
     subforums = SubForum.objects.all()
     posts = Post.objects.all()
+    preferences = Profile.objects.get(user=request.user)
+    # add_pref = Category.objects.get(category='Sports')
+    # preferences.preferences.add(add_pref)
+
+    # preferences = Profile.objects.filter(user=request.user)
+
     context = {
         'subforums': subforums,
         'posts': posts,
+        'preferences': preferences,
     }
     return render(request, 'forums/main.html', context)
 

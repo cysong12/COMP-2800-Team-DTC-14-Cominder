@@ -18,6 +18,10 @@ def home(request):
     return render(request, 'task_tracker/home.html', context)
 
 
+def complete(request, pk):
+    return render(request, 'task_tracker/task_complete.html')
+
+
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     success_url = '/task-tracker/home'
