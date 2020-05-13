@@ -13,7 +13,7 @@ urlpatterns = [
     path('home/new/', TaskCreateView.as_view(), name='task-create'),
     path('home/', views.home, name='task-tracker-home'),
     path('about/', views.about, name='task-tracker-about'),
-    path('contact/', views.contact, name='feature-contact')
+    path('contact/', views.contact, name='feature-contact'),
 ]
 
 if settings.DEBUG:
