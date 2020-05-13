@@ -28,7 +28,16 @@ class PostDetailView(DetailView):
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
-    pass
+    model = Post
+    success_url = '/task-tracker/home'
+    fields = ['title', 'description', 'sub_forum']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        return True
 
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
