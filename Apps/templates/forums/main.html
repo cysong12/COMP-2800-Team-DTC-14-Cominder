@@ -1,12 +1,16 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <legend class="border-bottom mb-4">
+    <button><a href="">Home</a></button>
+    <br>
+    <br>
+    <legend>Your preference forums:</legend>
+    {% for subforums in forums %}
+        <button><a href="">{{ subforums.name.capitalize }}</a></button>
+    {% endfor %}
+
+    <legend class="border-bottom m-4">
         Posts
     </legend>
-
-    {% for x in subforums %}
-        <h1>{{ x.name.capitalize }}</h1>
-    {% endfor %}
 
     {% if posts %}
         {% for post in posts %}

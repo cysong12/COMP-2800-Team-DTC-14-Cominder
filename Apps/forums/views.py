@@ -13,14 +13,18 @@ from django.db.models import Q
 def forums(request):
     posts = Post.objects.all()
     preferences = Profile.objects.get(user=request.user)
-    subforums = SubForum.objects.filter(category__profile__user=request.user)
+    forums = SubForum.objects.filter(category__profile__user=request.user)
 
     context = {
-        'subforums': subforums,
+        'forums': forums,
         'posts': posts,
         'preferences': preferences,
     }
     return render(request, 'forums/main.html', context)
+
+
+def subforum_posts(request, pk):
+    pass
 
 
 class PostList(ListView):
@@ -31,7 +35,7 @@ class PostList(ListView):
 
 class SubforumList(ListView):
     model = SubForum
-    context_object_name = 'subforums'
+    context_object_name = 'forums'
     template_name = 'forums/main.html'
 
 
