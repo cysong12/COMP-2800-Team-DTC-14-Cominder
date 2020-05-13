@@ -9,10 +9,11 @@ urlpatterns = [
     path('home/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
     path('home/<int:pk>/update', TaskUpdateView.as_view(), name='task-update'),
     path('home/<int:pk>/delete', TaskDeleteView.as_view(), name='task-delete'),
+    path('home/<int:pk>/complete', views.complete, name='complete'),
     path('home/new/', TaskCreateView.as_view(), name='task-create'),
     path('home/', views.home, name='task-tracker-home'),
     path('about/', views.about, name='task-tracker-about'),
-    path('contact/', views.contact, name='feature-contact')
+    path('contact/', views.contact, name='feature-contact'),
 ]
 
 if settings.DEBUG:
