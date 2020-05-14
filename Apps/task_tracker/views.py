@@ -41,6 +41,7 @@ def complete(request, pk):
             return redirect('post-detail', pk=post_created.pk)
     else:
         form = TaskCompleteForm()
+
     context = {
         'form': form,
         'task': task_instance,

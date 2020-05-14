@@ -23,20 +23,20 @@ def forums(request):
     return render(request, 'forums/main.html', context)
 
 
-def subforum_posts(request, pk):
-    pass
-
-
 class PostList(ListView):
     model = Post
     context_object_name = 'posts'
     template_name = 'forums/main.html'
 
 
-class SubforumList(ListView):
-    model = SubForum
-    context_object_name = 'forums'
-    template_name = 'forums/main.html'
+class SubforumPostsList(ListView):
+    model = Post
+    paginate_by = 10
+    context_object_name = 'posts'
+    template_name = 'forums/subforum_main.html'
+
+    def get_queryset(self, *args, **kwargs):
+        return Post.objects.filter(Q(sub_forum__pk=self.kwargs['pk']))
 
 
 class PostDetailView(DetailView):
