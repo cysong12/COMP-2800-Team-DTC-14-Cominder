@@ -14,9 +14,9 @@ urlpatterns = [
     path('home/', views.home, name='task-tracker-home'),
     path('about/', views.about, name='task-tracker-about'),
     path('contact/', views.contact, name='feature-contact'),
-    path('send_push', send_push),	#WIP
-	path('webpush/', include('views.webpush.urls')),		#WIP
 ]
+# path('send_push', send_push),
+# path('webpush/', include('views.webpush.urls')),
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
