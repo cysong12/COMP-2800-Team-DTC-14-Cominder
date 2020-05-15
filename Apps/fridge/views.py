@@ -16,14 +16,6 @@ def home(request):
     return render(request, 'fridge/home.html', context)
 
 
-class FridgeListView(ListView):
-    # Tells what model to query
-    model = Fridge
-    # context_object_name = 'fridge'
-    # Template
-    template_name = 'fridge/home.html'
-
-
 class FridgeDetailView(DetailView):
     model = Fridge
 
