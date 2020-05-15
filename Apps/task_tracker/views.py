@@ -11,7 +11,7 @@ from django.db.models import Q
 
 @login_required
 def home(request):
-    tasks = Task.objects.filter(Q(completed=False))
+    tasks = Task.objects.filter(Q(completed=False) & Q(user=request.user))
     categories = Category.objects.all()
     context = {
         'tasks': tasks,
