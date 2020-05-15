@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from Apps.task_tracker.models import *
 from Apps.forums.models import *
+from .models import Profile
 
 
 def settings(request):
@@ -63,3 +64,10 @@ def update_profile(request):
     }
 
     return render(request, 'users/update_profile.html', context)
+
+
+def leaderboard(request):
+    context = {
+        'profiles': Profile.objects.all()   
+    }
+    return render(request, 'users/leaderboard.html', context)

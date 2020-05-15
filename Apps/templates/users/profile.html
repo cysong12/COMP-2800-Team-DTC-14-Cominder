@@ -14,8 +14,9 @@
 
             <div class="col-md-8">
                 <div class="card-body user-profile-info">
-                    <h5 class="card-title">{{ user.username }}</h5>
-                    <p class="card-text">{{ user.email }}</p>
+                    <h5 class="card-title">Username: {{ user.username }}</h5>
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <p class="card-text">Points: {{ user.points }}</p>
                     <p class="card-text"><small class="text-muted"><a href="{% url 'update-profile' %}">Update Profile Information</a></small></p>
                 </div>
             </div>

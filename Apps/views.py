@@ -62,3 +62,4 @@ def landing_page(request):
 
 def contact(request):
     return render(request, 'main/contact.html')
+

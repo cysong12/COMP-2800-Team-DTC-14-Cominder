@@ -2,6 +2,7 @@ from . import views as main_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from .users import views as user_views
 
 urlpatterns = [
     path('', main_views.landing_page, name='feature-landing'),
@@ -11,7 +12,7 @@ urlpatterns = [
     path('task-tracker/', include('Apps.task_tracker.urls')),
     path('forums/', include('Apps.forums.urls')),
     path('heat-map/', include('Apps.heat_map.urls')),
-    # path('home/<int:pk>/', main_views.increment_like, name='increment-like-main'),
+    path('leaderboard/', user_views.leaderboard, name='feature-leaderboard'),
 ]
 
 if settings.DEBUG:
