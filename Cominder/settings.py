@@ -138,6 +138,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = 'Apps/static/'
 
+SESSION_COOKIE_AGE = 3600
+
 STATICFILES_DIRS = ('Apps/static/',)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -151,3 +153,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
+
+
