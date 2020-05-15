@@ -347,3 +347,9 @@ body {
   #btn-section {
     border-left: 1px solid silver;
   }
+
+  /* DEBUG CHANGES */
+
+  #myModal {
+    margin: 100px;
+  }
