@@ -12,9 +12,10 @@ from django.http import HttpResponse, JsonResponse
 
 
 def forums(request):
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
     preferences = Profile.objects.get(user=request.user)
     forums = SubForum.objects.filter(category__profile__user=request.user)
+    posts = Post.objects.filter(sub_forum__in=forums)
 
     context = {
         'forums': forums,
@@ -25,7 +26,11 @@ def forums(request):
 
 
 def subforum_posts(request, pk):
-    pass
+    post_instances = Post.objects.filter(sub_forum__pk=pk)
+    context = {
+        'posts': post_instances,
+    }
+    return render(request, 'forums/main.html', context)
 
 
 def increment_like(request):

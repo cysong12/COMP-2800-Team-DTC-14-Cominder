@@ -1,12 +1,12 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-    <button><a href="">Home</a></button>
+    <button><a href="{% url 'forums-main' %}">Home</a></button>
     <br>
     <br>
     <legend>Your preference forums:</legend>
     {% for subforums in forums %}
-        <button><a href="">{{ subforums.name.capitalize }}</a></button>
+        <button><a href="{% url 'subforum-home' subforums.pk %}">{{ subforums.name.capitalize }}</a></button>
     {% endfor %}
 
     <legend class="border-bottom m-4">

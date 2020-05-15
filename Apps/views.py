@@ -16,7 +16,9 @@ def home(request):
     tasks = Task.objects.filter(Q(user=request.user) & Q(completed=False))
     if request.user.is_authenticated:
         username = request.user.username
-    posts = Post.objects.all()
+
+    forums = SubForum.objects.filter(category__profile__user=request.user)
+    posts = Post.objects.filter(sub_forum__in=forums)
     context = {
         'username': username,
         'tasks': tasks,
@@ -25,9 +27,10 @@ def home(request):
     return render(request, 'main/home.html', context)
 
 
+'''
 def increment_like(request, pk):
     post_instance = Post.objects.filter(pk=pk).update(likes=F('likes') + 1)
-    return redirect('feature-home')
+    return redirect('feature-home')'''
 
 
 class TaskListView(ListView):
