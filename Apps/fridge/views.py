@@ -19,6 +19,7 @@ def home(request):
 class FridgeListView(ListView):
     # Tells what model to query
     model = Fridge
+    context_object_name = 'fridge'
     # Template
     template_name = 'fridge/home.html'
 
