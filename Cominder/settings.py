@@ -164,8 +164,15 @@ LOGIN_REDIRECT_URL = 'feature-home'
 
 LOGIN_URL = 'login'
 
+LOGOUT_URL = 'logout'
+
+SOCIAL_AUTH_GITHUB_KEY = 'ed60ab81e6b91cc7c037'
+
+SOCIAL_AUTH_GITHUB_SECRET = '1895e63669dc438ca545a0968e81a8c7a0490922'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
 django_heroku.settings(locals())
+
