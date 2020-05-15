@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% block content %}
+	<div class="main-content">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Delete Fridge Item
+                </legend>
+                <h3>Are you sure you want to delete the item: "{{ object.name }}"</h3>
+            </fieldset>
+            <br>
+            <div class="form-group">
+                <button class="btn btn-danger-custom" type="submit">
+                    Yes, Delete
+                </button>
+                <a href href="{% url 'fridge-home' %}" class="btn btn-outline-secondary">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -2,25 +2,27 @@
 {% include 'task_tracker/home.html' %}
 {% load static %}
 {% block content %}
-    <legend class="mb-2">Hello {{ username }}!</legend>
+    <h1 class="mb-2"><span id="dayMessage"></span> {{ username }}!</h1>
+    <hr>
     <legend>Apps</legend>
     <div class="container mb-2">
         <div class="row">
             <div class="col">
-                <a href='{% url 'task-tracker-home' %}'>Task Tracker</a>
+                <a href='{% url 'task-tracker-home' %}' class="btn app-link">Task Tracker</a>
             </div>
             <div class="col">
-                <a href="{% url 'forums-main' %}">Forums</a>
+                <a href="{% url 'forums-main' %}" class="btn app-link">Forums</a>
             </div>
             <div class="col">
-                Fridge
+                <a href='{% url 'fridge-home' %}' class="btn app-link">Fridge</a>
             </div>
             <div class="col">
-                <a href="{% url 'heat-map-main' %}">Map</a>
+                <a href="{% url 'heat-map-main' %}" class="btn app-link">Map</a>
             </div>
         </div>
     </div>
-    <legend>Ongoing tasks</legend>
+    <br>
+    <legend>Today's Tasks</legend>
     <div class="container">
     {% if tasks %}
         {% for task in tasks %}
@@ -46,13 +48,14 @@
         {% endfor %}
     {% endif %}
     {% if not tasks %}
-        <div class="card mb-3">
+        <div class="card mb-3" id="main-page-tasks">
             <div class="row no-gutters">
                 No tasks for today!
             </div>
         </div>
     {% endif %}
     </div>
+    <br>
     <legend>Forum Posts</legend>
     <div class="container mb-2">
         {% for post in posts %}

@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>Current Selected/Added Item: </h1>
+    <hr>
+      {% if object.user == user %}
+        <div>
+            <a class="btn btn-secondary-custom btn-md mt-1 mb-1" href="{% url 'fridge-update' object.id %}">Update</a>
+            <a class="btn btn-danger-custom btn-md mt-1 mb-1" href="{% url 'fridge-delete' object.id %}">Delete</a>
+        </div>
+      {% endif %}
+    <br>
+    <h3>{{ object.name }} - <span>{{ object.quantity }}</span></h3>
+    <br><br>
+    <a class="btn btn-primary-custom" href="{% url 'fridge-home' %}">Back to my Fridge</a>
+{% endblock content %}

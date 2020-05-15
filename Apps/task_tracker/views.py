@@ -101,7 +101,7 @@ class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    return render(request, 'task_tracker/about.html', {'title': 'About us'})
+    return render(request, 'task_tracker/about.html', {'title': 'About Us'})
 
 
 def landing_page(request):

@@ -13,6 +13,7 @@ urlpatterns = [
     path('forums/', include('Apps.forums.urls')),
     path('heat-map/', include('Apps.heat_map.urls')),
     path('leaderboard/', user_views.leaderboard, name='feature-leaderboard'),
+    path('fridge/', include('Apps.fridge.urls')),
 ]
 
 if settings.DEBUG:
