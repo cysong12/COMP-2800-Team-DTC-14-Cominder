@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from Apps.users.models import *
 from datetime import datetime
@@ -6,14 +6,16 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, F
+from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
 
 def forums(request):
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
     preferences = Profile.objects.get(user=request.user)
     forums = SubForum.objects.filter(category__profile__user=request.user)
+    posts = Post.objects.filter(sub_forum__in=forums)
 
     context = {
         'forums': forums,

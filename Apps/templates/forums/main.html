@@ -1,11 +1,12 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
     <button><a href="{% url 'forums-main' %}">Home</a></button>
     <br>
     <br>
     <legend>Your preference forums:</legend>
     {% for subforums in forums %}
-        <button><a href="{% url 'subforum-home' subforums.id %}">{{ subforums.name.capitalize }}</a></button>
+        <button><a href="{% url 'subforum-home' subforums.pk %}">{{ subforums.name.capitalize }}</a></button>
     {% endfor %}
 
     <legend class="border-bottom m-4">
@@ -46,8 +47,36 @@
                             </div>
                         </div>
                     </a>
+                    <div class="row row-no-gutters">
+                        <div class="col">
+                            <button class="btn btn-success like-btn" data-id="{{ post.pk }}">Like</button>
+                            <p class="likes-count">{{ post.likes }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% endfor %}
     {% endif %}
 {% endblock content %}
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(".like-btn").click(function () {
+                if ($(this).html() === "Like") {
+                    $(this).html("Dislike");
+
+                    let post_pk = $(this).attr("data-id");
+                    $.ajax("/forums/", {
+                        type: 'GET',
+                        data: {post_pk: post_pk}
+                    })
+                    //dataType: 'json',
+                        .done(function () {
+                            $(this).html('good!');
+                        })
+                }
+            });
+        });
+
+    </script>
+{% endblock javascript %}

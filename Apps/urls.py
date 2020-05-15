@@ -11,6 +11,7 @@ urlpatterns = [
     path('task-tracker/', include('Apps.task_tracker.urls')),
     path('forums/', include('Apps.forums.urls')),
     path('heat-map/', include('Apps.heat_map.urls')),
+    # path('home/<int:pk>/', main_views.increment_like, name='increment-like-main'),
 ]
 
 if settings.DEBUG:

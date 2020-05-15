@@ -22,7 +22,7 @@ class Post(models.Model):
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
     posted_date = datetime.now()
     description = models.CharField(max_length=200)
-    likes = models.IntegerField(default=0, null=True, blank=True)
+    likes = models.IntegerField(default=0)
     media = models.FileField(default='post_media/default.jpg', upload_to='post_media')
     sub_forum = models.ForeignKey(SubForum, on_delete=models.CASCADE)
 
