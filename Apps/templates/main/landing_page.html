@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'task_tracker/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
 
         <!--FAVICON LINKS-->
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'task_tracker/../../static/images/favicon_io/apple-touch-icon.png' %}">
@@ -25,7 +26,7 @@
 
     <body id="landing_page_body">
         <div class="container">
-            <div class="header clearfix landing_page_navbar">
+            <div class="header clearfix landing_page_navbar animate__animated animate__fadeInDown">
                 <nav class="navbar navbar-expand-xl">
                     <a href="{% url 'feature-home' %}"><img src="{% static 'task_tracker/../../static/images/pink_logo.png' %}" alt="site_logo" class="site_logo"></a>
                     <ul class="navbar-nav ml-auto">
@@ -35,7 +36,7 @@
                 </nav>
             </div>
 
-            <div class="jumbotron" id="landing_page_header">
+            <div class="jumbotron animate__animated animate__fadeInLeft" id="landing_page_header">
                 <h1>START YOUR DAY WITH A BREATH OF FRESH OF AIR</h1>
 
                 <a href="{% url 'login' %}">SIGN IN</a>

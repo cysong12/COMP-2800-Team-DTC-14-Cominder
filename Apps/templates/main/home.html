@@ -2,7 +2,8 @@
 {% include 'task_tracker/home.html' %}
 {% load static %}
 {% block content %}
-    <legend class="mb-2">Hello {{ username }}!</legend>
+    <h1 class="mb-2"><span id="dayMessage"></span> {{ username }}!</h1>
+    <br>
     <legend>Apps</legend>
     <div class="container mb-2">
         <div class="row">
@@ -20,7 +21,7 @@
             </div>
         </div>
     </div>
-    <legend>Today's tasks</legend>
+    <legend>Today's Tasks</legend>
     <div class="container">
     {% if tasks %}
         {% for task in tasks %}
@@ -46,7 +47,7 @@
         {% endfor %}
     {% endif %}
     {% if not tasks %}
-        <div class="card mb-3">
+        <div class="card mb-3" id="main-page-tasks">
             <div class="row no-gutters">
                 No tasks for today!
             </div>

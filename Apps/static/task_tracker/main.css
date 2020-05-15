@@ -77,6 +77,19 @@ body {
     color: #FFC2C2;
   }
 
+  /* BASE HTML */
+  .user-information-menu {
+    margin-top: 10px;
+  }
+
+  #user-profile-picture {
+    border: 1px solid silver;
+  }
+
+  #main-page-tasks {
+    padding: 20px;
+  }
+
   /* ABOUT US */
 
   .account-img {
@@ -107,6 +120,9 @@ body {
   .navbar-custom {
     background-color: #c88b8b;
     padding: 20px;
+    -webkit-box-shadow:0px 2px 2px grey;
+    -moz-box-shadow:0px 2px 2px grey;
+    box-shadow: 0px 2px 2px grey;
   }
 
   #navbar1 {
@@ -233,4 +249,53 @@ body {
 
   .contact-links a {
     color: black;
+  }
+
+  /* FRIDGE */
+
+  .items {
+    padding-bottom: 10px;
+  }
+
+  .items {
+    color: #c88b8b;
+    transition: all 0.3s;
+  }
+
+  .items:hover {
+    text-decoration: none;
+    color: #FFC2C2;
+  }
+
+  .add-btn {
+    background-color: #BEDCFF;
+    color: black;
+    transition: all 0.3s;
+  }
+
+  .add-btn:hover {
+    background-color: white;
+    color: #BEDCFF;
+    border: 1px solid #BEDCFF;
+  }
+
+  .add-btn:active {
+    background-color: #BEDCFF;
+    color: #5C5C5C;
+  }
+
+  .recipe-btn {
+    color: white;
+    background-color: #C88B8B;
+    transition: all 0.3s;
+  }
+
+  .recipe-btn:hover {
+    color: #c88b8b;
+    background-color: white;
+    border: 1px solid #c88b8b;
+  }
+
+  #btn-section {
+    border-left: 1px solid silver;
   }

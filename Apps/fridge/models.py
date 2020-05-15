@@ -8,6 +8,7 @@ from django.urls import reverse
 class Fridge(models.Model):
     name = models.CharField(max_length=20)
     quantity = models.PositiveSmallIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
