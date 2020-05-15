@@ -43,11 +43,13 @@
                                 </div>
                                 <div class="modal-body">
                                     Would you like to upload to sub-forum {{ task.category }}?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" onclick="location.href='{% url 'complete-no-upload' task.id %}'">No</button>
+
+
+                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
+                                  </div>
                                 </div>
                             </div>
                         </div>

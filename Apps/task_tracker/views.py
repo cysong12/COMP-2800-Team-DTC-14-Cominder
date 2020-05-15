@@ -5,19 +5,26 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import *
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
 
 
 @login_required
 def home(request):
-    tasks = Task.objects.filter(Q(completed=False))
+    tasks = Task.objects.filter(Q(completed=False) & Q(user=request.user))
     categories = Category.objects.all()
     context = {
         'tasks': tasks,
         'categories': categories,
     }
     return render(request, 'task_tracker/home.html', context)
+
+
+def complete_no_upload(request, pk):
+    task_instance = get_object_or_404(Task, pk=pk)
+    task_instance.completed = True
+    task_instance.save(update_fields=["completed"])
+    return redirect('task-tracker-home')
 
 
 def task_complete_form_to_creating_post(request, form_response):

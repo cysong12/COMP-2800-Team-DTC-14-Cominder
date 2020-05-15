@@ -14,6 +14,7 @@ urlpatterns = [
     path('home/', views.home, name='task-tracker-home'),
     path('about/', views.about, name='task-tracker-about'),
     path('contact/', views.contact, name='feature-contact'),
+    path('home/<int:pk>/complete-no-upload', views.complete_no_upload, name='complete-no-upload'),
 ]
 
 if settings.DEBUG:
