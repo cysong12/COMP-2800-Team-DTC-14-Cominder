@@ -1,57 +1,114 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
-    <button type="button" class="btn btn-success mb-5" onclick="location.href='{% url 'task-create' %}'">New task</button>
-    <legend class="border-bottom mb-4">
-        Ongoing Tasks
-    </legend>
-    {% if tasks %}
-        {% for task in tasks %}
-            <div class="container">
-                <div class="card mb-3">
-                    <div class="row no-gutters">
-                        <div class="col-2">
-                        <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
-                        </div>
-                        <div class="col-4">
-                            <p>Date Start: {{ task.date_start }}</p>
-                        </div>
-                        <div class="col-4">
-                            <p>Description: {{ task.description }}</p>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-warning" onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-danger" onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                Completed
-                            </button>
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                      <h4 class="modal-title" id="myModalLabel">Congrats!</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    Would you like to upload to sub-forum {{ task.category }}?
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
-                                  </div>
+<button type="button" class="btn btn-success mb-5" onclick="location.href='{% url 'task-create' %}'">New task</button>
+<legend class="border-bottom mb-4">
+    Ongoing Tasks
+</legend>
+{% if tasks %}
+{% for task in tasks %}
+{% if task.title.strip.lower == "do a barrel roll" %}
+<div class="easter-egg">
+    <div class="container">
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+                </div>
+                <div class="col-4">
+                    <p>Date Start: {{ task.date_start }}</p>
+                </div>
+                <div class="col-4">
+                    <p>Description: {{ task.description }}</p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-warning"
+                        onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-danger"
+                        onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Complete
+                    </button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel">Congrats!</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
                                 </div>
-                              </div>
+                                <div class="modal-body">
+                                    Would you like to upload to sub-forum {{ task.category }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
-    {% endif %}
-    {% if not tasks %}
-        No tasks! Create tasks to see your tasks here.
-    {% endif %}
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-2">
+                <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
+            </div>
+            <div class="col-4">
+                <p>Date Start: {{ task.date_start }}</p>
+            </div>
+            <div class="col-4">
+                <p>Description: {{ task.description }}</p>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-warning"
+                    onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-danger"
+                    onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Complete
+                </button>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Congrats!</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                Would you like to upload to sub-forum {{ task.category }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"
+                                    onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% if not tasks %}
+No tasks! Create tasks to see your tasks here.
+{% endif %}
 {% endblock content %}

@@ -38,6 +38,7 @@ def complete(request, pk):
             post_created = task_complete_form_to_creating_post(request, form_response)
             task_instance.completed = True
             task_instance.save(update_fields=["completed"])
+            
             return redirect('post-detail', pk=post_created.pk)
     else:
         form = TaskCompleteForm()

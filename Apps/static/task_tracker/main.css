@@ -234,3 +234,15 @@ body {
   .contact-links a {
     color: black;
   }
+
+.easter-egg {
+  animation-name: roll;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+}
+
+@keyframes roll {
+  100% {
+      transform: rotate(360deg);
+  }
+}
