@@ -114,7 +114,7 @@ def contact(request):
     return render(request, 'main/contact.html')
 
 
-@require_POST
+@login_required
 @csrf_exempt
 def send_push(request):
     try:
