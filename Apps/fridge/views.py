@@ -9,7 +9,7 @@ from .models import *
 
 @login_required()
 def home(request):
-    fridge = Fridge.objects.all()
+    fridge = Fridge.objects.filter(user=request.user)
     context = {
         'fridge': fridge,
     }
@@ -45,7 +45,7 @@ class FridgeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['name', 'quantity']
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
