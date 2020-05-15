@@ -3,24 +3,25 @@
 {% load static %}
 {% block content %}
     <h1 class="mb-2"><span id="dayMessage"></span> {{ username }}!</h1>
-    <br>
+    <hr>
     <legend>Apps</legend>
     <div class="container mb-2">
         <div class="row">
             <div class="col">
-                <a href='{% url 'task-tracker-home' %}'>Task Tracker</a>
+                <a href='{% url 'task-tracker-home' %}' class="btn app-link">Task Tracker</a>
             </div>
             <div class="col">
-                <a href="{% url 'forums-main' %}">Forums</a>
+                <a href="{% url 'forums-main' %}" class="btn app-link">Forums</a>
             </div>
             <div class="col">
-                <a href='{% url 'fridge-home' %}'>Fridge</a>
+                <a href='{% url 'fridge-home' %}' class="btn app-link">Fridge</a>
             </div>
             <div class="col">
-                <a href="{% url 'heat-map-main' %}">Map</a>
+                <a href="{% url 'heat-map-main' %}" class="btn app-link">Map</a>
             </div>
         </div>
     </div>
+    <br>
     <legend>Today's Tasks</legend>
     <div class="container">
     {% if tasks %}
@@ -54,6 +55,7 @@
         </div>
     {% endif %}
     </div>
+    <br>
     <legend>Forum Posts</legend>
     <div class="container mb-2">
         {% for post in posts %}

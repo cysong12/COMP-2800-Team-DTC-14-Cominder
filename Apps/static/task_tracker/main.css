@@ -10,6 +10,10 @@ body {
   ul {
     margin: 0;
   }
+
+  hr {
+    border-bottom: 1px solid #FFDEDE;
+  }
   
   .navbar-color {
     background-color: #FFDEDE;
@@ -88,6 +92,17 @@ body {
 
   #main-page-tasks {
     padding: 20px;
+  }
+
+  .app-link {
+    background-color: #c88b8b;
+    color: white;
+  }
+
+  .app-link:hover {
+    background-color: white;
+    color: #c88b8b;
+    border: 1px solid #c88b8b;
   }
 
   /* ABOUT US */
@@ -291,6 +306,39 @@ body {
   }
 
   .recipe-btn:hover {
+    color: #c88b8b;
+    background-color: white;
+    border: 1px solid #c88b8b;
+  }
+
+  .btn-secondary-custom {
+    background-color: #FFE9BE;
+    color: black;
+  }
+
+  .btn-secondary-custom:hover {
+    background-color: white;
+    color: #FFE9BE;
+    border: 1px solid #FFE9BE;
+  }
+
+  .btn-danger-custom {
+    background-color: #974343;
+    color: white;
+  }
+
+  .btn-danger-custom:hover {
+    background-color: white;
+    color: #974343;
+    border: 1px solid #974343;
+  }
+
+  .btn-primary-custom {
+    color: white;
+    background-color: #C88B8B;
+  }
+
+  .btn-primary-custom:hover {
     color: #c88b8b;
     background-color: white;
     border: 1px solid #c88b8b;
