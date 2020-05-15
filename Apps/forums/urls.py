@@ -10,6 +10,7 @@ urlpatterns = [
     path('home/<int:pk>/update', views.PostUpdateView.as_view(), name='post-update'),
     path('home/<int:pk>/delete', views.PostDeleteView.as_view(), name='post-delete'),
     path('subforum/<int:pk>/', views.subforum_posts, name='subforum-home'),
+    path('/$', views.increment_like, name='increment-like'),
 ]
 
 if settings.DEBUG:

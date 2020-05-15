@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <legend>Today's tasks</legend>
+    <legend>Ongoing tasks</legend>
     <div class="container">
     {% if tasks %}
         {% for task in tasks %}
@@ -83,10 +83,9 @@
                     </div>
                     <div class="row no-gutters">
                         <p class="col-3">Likes: {{ post.likes }}</p>
-                        <form>
-                            <input type="submit" name="{{ post.id }}" value="Like">
-                            <input type="submit" name="comment" value="Comment">
-                        </form>
+                        <button><a href="{% url 'increment-like' post.pk %}">Like</a></button>
+                            <button onclick="">Comment</button>
+
                     </div>
                 </div>
             </div>
