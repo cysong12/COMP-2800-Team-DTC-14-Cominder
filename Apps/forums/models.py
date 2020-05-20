@@ -46,7 +46,7 @@ class Comment(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(User, related_name='comment_likes')
     message = models.CharField(max_length=500)
-    # parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies', on_delete=models.CASCADE)
     on_post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):

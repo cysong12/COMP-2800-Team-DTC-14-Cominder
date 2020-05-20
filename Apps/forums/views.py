@@ -94,19 +94,31 @@ def create_comment_object(request, cleaned_response, post_pk):
     return comment_created
 
 
+def create_reply_object(request, cleaned_response, post_pk, comment_pk):
+    reply_created = Comment.objects.create(posted_by=request.user, message=cleaned_response['message'], on_post_id=post_pk, parent_id=comment_pk)
+    reply_created.save()
+    return reply_created
+
+
 def post_detail_view(request, pk):      # post pk
     comment_created = None
+    comment_instances = Comment.objects.filter(on_post_id=pk, parent__isnull=True)
     post_instance = Post.objects.get(pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             form = form.cleaned_data
+            parent_instance = None
+            try:
+                parent_id = int(request.POST.get('parent_id'))
+            except:
+                parent_id = None
+            if parent_instance:
+                reply = create_reply_object(request, form, pk, parent_id)
             comment_created = create_comment_object(request, form, pk)
     form = CommentForm()
-    comment_instances = Comment.objects.filter(on_post_id=pk)
     return_list = []
     for comment in comment_instances:
-
         return_list.append((comment, comment.likes.filter(id=request.user.id).exists()))
     context = {
         'form': form,
