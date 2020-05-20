@@ -2,11 +2,24 @@ from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from Apps.task_tracker.models import *
 from Apps.forums.models import *
+from Apps.users.models import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from datetime import datetime
 from django.db.models import Q, F
 from django.db.models import Model
 from django.views.decorators.csrf import csrf_exempt
+
+
+def update_points(user):
+    profile_instance = Profile.objects.get(user=user)
+    profile_instance.points = 0
+    comments = Comment.objects.filter(posted_by=user)
+    posts = Post.objects.filter(posted_by=user)
+    for comment in comments:
+        profile_instance.points += comment.total_likes()
+    for post in posts:
+        profile_instance.points += post.total_likes()
+    profile_instance.save()
 
 
 @login_required
@@ -19,6 +32,7 @@ def home(request):
 
     forums = SubForum.objects.filter(category__profile__user=request.user)
     posts = Post.objects.filter(sub_forum__in=forums)
+    update_points(request.user)
     context = {
         'username': username,
         'tasks': tasks,
