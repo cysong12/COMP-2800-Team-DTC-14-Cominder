@@ -40,11 +40,14 @@ def like(request):
         user = request.user
         slug = request.POST.get('slug', None)
         post = get_object_or_404(Post, pk=slug)
-
+        profile_instance = Profile.objects.get(user=post.posted_by)
         if post.likes.filter(id=user.id).exists():
             post.likes.remove(user)
+            profile_instance.points -= 1
         else:
             post.likes.add(user)
+            profile_instance.points += 1
+        profile_instance.save()
     context = {
         'likes': post.total_likes(),
     }
@@ -58,13 +61,16 @@ def comment_like(request):
         user = request.user
         slug = request.POST.get('slug', None)
         comment = get_object_or_404(Comment, pk=slug)
-
+        profile_instance = Profile.objects.get(user=comment.posted_by)
         if comment.likes.filter(id=user.id).exists():
             comment.likes.remove(user)
             message = "Like"
+            profile_instance.points -= 1
         else:
             comment.likes.add(user)
             message = "Dislike"
+            profile_instance.points += 1
+        profile_instance.save()
     context = {
         'likes': comment.total_likes(),
         'message': message,
@@ -102,20 +108,17 @@ def create_reply_object(request, cleaned_response, post_pk, comment_pk):
 
 def post_detail_view(request, pk):      # post pk
     comment_created = None
-    comment_instances = Comment.objects.filter(on_post_id=pk, parent__isnull=True)
+    comment_instances = Comment.objects.filter(Q(on_post_id=pk) & Q(parent__isnull=True))
     post_instance = Post.objects.get(pk=pk)
     if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             form = form.cleaned_data
-            parent_instance = None
-            try:
-                parent_id = int(request.POST.get('parent_id'))
-            except:
-                parent_id = None
-            if parent_instance:
-                reply = create_reply_object(request, form, pk, parent_id)
-            comment_created = create_comment_object(request, form, pk)
+            if request.POST.get('parent_id'):
+                parent_instance_id = request.POST.get('parent_id')
+                create_reply_object(request, form, pk, parent_instance_id)
+            else:
+                comment_created = create_comment_object(request, form, pk)
     form = CommentForm()
     return_list = []
     for comment in comment_instances:
