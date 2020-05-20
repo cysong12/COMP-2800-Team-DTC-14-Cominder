@@ -40,8 +40,15 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
+def update_points(user):
+    profile_instance = Profile.objects.get(user=user)
+    profile_instance['points'] = 2
+    profile_instance.save()
+
+
 @login_required
 def profile(request):
+    update_points(request.user)
     return render(request, 'base/base.html')
 
 
