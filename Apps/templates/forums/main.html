@@ -17,7 +17,7 @@
         {% for post in posts %}
             <div class="container">
                 <div class="card mb-3">
-                    <a href="{% url 'post-detail' post.id %}">
+                    <a href="{% url 'post-detail' post.pk %}">
                         <div class="row">
                             <div class="col-8">
                                     <div class="row no-gutters">
@@ -48,9 +48,12 @@
                         </div>
                     </a>
                     <div class="row row-no-gutters">
+                        <div class="col-2">
+                            <input type="button" class="like" name="{{ post.pk }}" value="Likes {{ post.total_likes }}" />
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
                         <div class="col">
-                            <button class="btn btn-success like-btn" data-id="{{ post.pk }}">Like</button>
-                            <p class="likes-count">{{ post.likes }}</p>
+                            <input type="button" value="{{post.comments.count}} Comments" onclick="location.href='{% url 'post-detail' post.pk %}'"/>
                         </div>
                     </div>
                 </div>
@@ -61,22 +64,26 @@
 {% block javascript %}
     <script type="text/javascript">
         $(document).ready(function() {
-            $(".like-btn").click(function () {
-                if ($(this).html() === "Like") {
-                    $(this).html("Dislike");
 
-                    let post_pk = $(this).attr("data-id");
-                    $.ajax("/forums/", {
-                        type: 'GET',
-                        data: {post_pk: post_pk}
-                    })
-                    //dataType: 'json',
-                        .done(function () {
-                            $(this).html('good!');
-                        })
-                }
+
+            $(".like").click(function () {
+                let $thisPost = $(this);
+                $thisPost.html("Dislike");
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'like' %}",
+                    data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                   dataType: "json",
+                   success: function(response) {
+                        $thisPost.val("Likes " + response.likes);
+                    },
+                    error: function(rs, e) {
+                           alert('error!');
+                    }
+                });
             });
-        });
 
+
+        });
     </script>
 {% endblock javascript %}

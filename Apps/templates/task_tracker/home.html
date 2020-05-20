@@ -31,9 +31,10 @@
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        Complete
+                        Completed
                     </button>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        data-backdrop="false">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -43,13 +44,14 @@
                                 </div>
                                 <div class="modal-body">
                                     Would you like to upload to sub-forum {{ task.category }}?
-                                  </div>
-                                  <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" onclick="location.href='{% url 'complete-no-upload' task.id %}'">No</button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default"
+                                        onclick="location.href='{% url 'complete-no-upload' task.id %}'">No</button>
 
 
-                                    <button type="button" class="btn btn-primary" onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
-                                  </div>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
                                 </div>
                             </div>
                         </div>
@@ -59,6 +61,7 @@
         </div>
     </div>
 </div>
+
 {% else %}
 <div class="container">
     <div class="card mb-3">
@@ -84,7 +87,7 @@
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                     Complete
                 </button>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
