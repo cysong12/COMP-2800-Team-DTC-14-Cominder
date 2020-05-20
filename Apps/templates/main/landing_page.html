@@ -39,8 +39,13 @@
             <div class="jumbotron animate__animated animate__fadeInLeft" id="landing_page_header">
                 <h1>START YOUR DAY WITH A BREATH OF FRESH OF AIR</h1>
 
+                {% if user.is_authenticated %}
+                <a href="{% url 'feature-home' %}">SIGN IN</a>
+                <a href="{% url 'register' %}">REGISTER</a>
+                {% else %}
                 <a href="{% url 'login' %}">SIGN IN</a>
                 <a href="{% url 'register' %}">REGISTER</a>
+                {% endif %}
             </div>
 
             <footer class="footer">
