@@ -1,12 +1,45 @@
 {% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<h1>Post detail test</h1>
 <div class="container">
-    <h1>{{ object.title }}</h1>
-    <h1>{{ object.sub_forum.category.category }}</h1>
-    <h1>{{ object.posted_by }}</h1>
-    <h1>{{ object.posted_date }}</h1>
-    <h1>{{ object.description }}</h1>
+    <div class="row-no-gutters">
+        <h1>{{ object.title }}</h1>
+    </div>
+    <div class="row">
+        <p>Category: {{ object.sub_forum.category.category }}</p>
+        <p>{{ object.posted_by }}</p>
+        <p>{{ object.posted_date }}</p>
+    </div>
+    <div class="row no-gutters mb-5">
+        <div class="col-6">
+            <p>{{ object.description }}</p>
+        </div>
+        <div class="col-6">
+            <img src="{{ object.media.url }}" style="max-width: 200px">
+        </div>
+    </div>
+    <div class="mb-5">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <input type="submit" class="btn btn-info" value="post comment" style="margin-left: 20px">
+        </form>
+    </div>
+    {% for comment, liked in comments %}
+        <div class="container">
+            <div class="card m-3">
+                <p>{{ comment.posted_by }}</p>
+                <p>{{ comment.message }}</p>
+                <p>{{ comment.posted_date }}</p>
+                {% if liked %}
+                    <input type="button" class="like" name="{{ comment.pk }}" value="Dislike {{ comment.total_likes }}" />
+                {% else %}
+                    <input type="button" class="like" name="{{ comment.pk }}" value="Like {{ comment.total_likes }}" />
+                {% endif %}
+                <i class="fa fa-thumbs-up"></i>
+            </div>
+        </div>
+    {% endfor %}
     {% if object.posted_by == user %}
     <div>
         <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Edit</a>
@@ -15,3 +48,28 @@
     {% endif %}
 </div>
 {% endblock content %}
+{% block javascript %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+
+            $(".like").click(function () {
+                let $thisComment = $(this);
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'comment-like' %}",
+                    data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                   dataType: "json",
+                   success: function(response) {
+                        $thisComment.val(response.message + " " + response.likes);
+                    },
+                    error: function(rs, e) {
+                           alert('error!');
+                    }
+                });
+            });
+
+
+        });
+    </script>
+{% endblock javascript %}
