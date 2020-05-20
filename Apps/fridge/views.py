@@ -1,3 +1,4 @@
+import requests
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -61,3 +62,55 @@ class FridgeDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return True
         return False
 
+
+@login_required()
+def recipe(request):
+    url = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random"
+
+    querystring = {
+        'number': 1,
+        'veryPopular': True,
+        'fillIngredients': True,
+        'addRecipeInformation': True,
+        'addRecipeNutrition': True
+    }
+
+    headers = {
+        'x-rapidapi-host': "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+        'x-rapidapi-key': "f8540d734amsh0d72a908c3766d4p1be29fjsn28baee86ebe6"
+    }
+
+    res = requests.request("GET", url, headers=headers, params=querystring).json()['recipes']
+
+    instructions = get_instructions(res[0]['analyzedInstructions'])
+    ingredients = get_ingredients(res[0]['extendedIngredients'])
+
+    context = {
+        'title': res[0]['title'],
+        'instructions': instructions,
+        'ingredients': ingredients,
+        'recipe_link': res[0]['sourceUrl'],
+        'image_link': res[0]['image'],
+    }
+
+    print(res[0]['summary'])
+
+    return render(request, 'fridge/fridge_recipe.html', context)
+
+
+def get_instructions(res: list) -> list:
+    instructions = []
+
+    for instruction in res[0]['steps']:
+        instructions.append(instruction['step'])
+
+    return instructions
+
+
+def get_ingredients(res: list) -> list:
+    ingredients = []
+
+    for ingredient in res:
+        ingredients.append(ingredient['name'])
+
+    return ingredients

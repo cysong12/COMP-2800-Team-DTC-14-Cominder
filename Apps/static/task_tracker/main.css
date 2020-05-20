@@ -359,6 +359,14 @@ body {
     border-left: 1px solid silver;
   }
 
+  .ingredient {
+    text-transform: capitalize;
+  }
+
+  #fridge-home {
+    padding-right: 20px;
+  }
+
   /* DEBUG CHANGES */
 
   #myModal {
