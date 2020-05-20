@@ -5,8 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='fridge-home'),
     path('new/', FridgeCreateView.as_view(), name='fridge-create'),
-    path('item/<int:pk>', FridgeDetailView.as_view(), name='fridge-detail'),
-    path('item/<int:pk>/update/', FridgeUpdateView.as_view(), name='fridge-update'),
-    path('item/<int:pk>/delete/', FridgeDeleteView.as_view(), name='fridge-delete'),
-    path('daily-recipe/', views.recipe, name='fridge-recipe'),
+    path('item/<uuid:pk>', FridgeDetailView.as_view(), name='fridge-detail'),
+    path('item/<uuid:pk>/update/', FridgeUpdateView.as_view(), name='fridge-update'),
+    path('item/<uuid:pk>/delete/', FridgeDeleteView.as_view(), name='fridge-delete'),
 ]

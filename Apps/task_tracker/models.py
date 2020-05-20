@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime
+import uuid
 
 
 class Category(models.Model):
@@ -23,6 +24,7 @@ class Category(models.Model):
 
 
 class Task(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=20)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
