@@ -5,6 +5,7 @@ from .forms import *
 from Apps.task_tracker.models import *
 from Apps.forums.models import *
 from .models import Profile
+from django.views.generic import ListView
 
 
 def settings(request):
@@ -66,8 +67,9 @@ def update_profile(request):
     return render(request, 'users/update_profile.html', context)
 
 
-def leaderboard(request):
-    context = {
-        'profiles': Profile.objects.all()   
-    }
-    return render(request, 'users/leaderboard.html', context)
+class ProfileListView(ListView):
+    model = Profile
+    template_name = 'users/leaderboard.html'
+    context_object_name = 'profiles'
+    ordering = ['-points']
+    paginate_by = 5
