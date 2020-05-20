@@ -45,6 +45,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webpush',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     ]
 
 
@@ -66,6 +72,14 @@ TEMPLATE_DIR = (
 
 FIXTURE_DIR = (
     os.path.join(BASE_DIR, 'Apps/fixtures')
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 TEMPLATES = [
@@ -168,5 +182,21 @@ EMAIL_HOST_PASSWORD = 'sgnbkeycznxuvhjk'
 
 DEFAULT_FROM_EMAIL = 'noreply.cominder@gmail.com'
 
+SITE_ID = 1
 
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+#provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False,
+    },
+    'google': {
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
 

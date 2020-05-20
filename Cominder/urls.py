@@ -19,7 +19,9 @@ from django.urls import path, include
 from Apps.users import views as user_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
 
+# or, url(r'^accounts/', include('allauth.urls')),
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.register, name='register'),
@@ -33,6 +35,7 @@ urlpatterns = [
     path('password-reset-confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/', auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
     path('', include('Apps.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
 
 if settings.DEBUG:
