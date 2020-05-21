@@ -14,7 +14,4 @@ urlpatterns = [
     url(r'^like/$', views.like, name='like'),
     url(r'^comment_like/$', views.comment_like, name='comment-like'),
     # path('home/<int:pk>/', views.post_detail_view, name='comment-form')
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

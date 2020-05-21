@@ -15,7 +15,4 @@ urlpatterns = [
     path('heat-map/', include('Apps.heat_map.urls')),
     path('leaderboard/', user_views.ProfileListView.as_view(), name='feature-leaderboard'),
     path('fridge/', include('Apps.fridge.urls')),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

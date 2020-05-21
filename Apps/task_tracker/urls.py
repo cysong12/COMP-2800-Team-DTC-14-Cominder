@@ -15,7 +15,4 @@ urlpatterns = [
     path('about/', views.about, name='task-tracker-about'),
     path('contact/', views.contact, name='feature-contact'),
     path('home/<uuid:pk>/complete-no-upload', views.complete_no_upload, name='complete-no-upload'),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
