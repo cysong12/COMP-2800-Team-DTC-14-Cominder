@@ -113,12 +113,11 @@
                      </a>
                 <div class="row">
                     <div class="col-2">
+                        <i class="fa fa-thumbs-up"></i>
                         {% if liked %}
                             <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
-                            <i class="fa fa-thumbs-up"></i>
                         {% else %}
                             <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
-                            <i class="fa fa-thumbs-down"></i>
                         {% endif %}
                     </div>
                     <div class="col">
