@@ -355,6 +355,17 @@ body {
     border: 1px solid #c88b8b;
   }
 
+  .btn-primary-custom-2 {
+    background-color: #FFC2C2;
+    color: black;
+  }
+
+  .btn-primary-custom-2:hover {
+    color: #FFC2C2;
+    background-color: white;
+    border: 1px solid #FFC2C2;
+  }
+
   #btn-section {
     border-left: 1px solid silver;
   }
@@ -363,8 +374,16 @@ body {
     text-transform: capitalize;
   }
 
-  #fridge-home {
-    padding-right: 20px;
+  /* TASK TRACKER */
+
+  .task-title a {
+    color: #c88b8b;
+    transition: all 0.3s;
+  }
+
+  .task-title a:hover {
+    color: #FFC2C2;
+    text-decoration: none;
   }
 
   /* DEBUG CHANGES */
