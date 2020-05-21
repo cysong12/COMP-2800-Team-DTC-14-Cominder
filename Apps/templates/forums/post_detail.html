@@ -1,23 +1,40 @@
 {% extends 'base/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="container">
+
     <div class="row-no-gutters">
         <h1>{{ object.title }}</h1>
     </div>
-    <div class="row">
-        <p>Category: {{ object.sub_forum.category.category }}</p>
-        <p>{{ object.posted_by }}</p>
-        <p>{{ object.posted_date }}</p>
+
+    <div class="row no-gutters">
+        <p class="col-2" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
+        <p class="col-2" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
+        <p class="col-2" style="font-size: 10px;">{{ object.posted_date }}</p>
     </div>
+
     <div class="row no-gutters mb-5">
-        <div class="col-6">
+        <div class="col-8">
             <p>{{ object.description }}</p>
         </div>
-        <div class="col-6">
-            <img src="{{ object.media.url }}" style="max-width: 200px">
+        <div class="col-3">
+            <img src="{{ object.media.url }}" style="max-width: 200px; float: right;">
         </div>
     </div>
+
+    <div class="col-2 mb-3">
+        <i class="fa fa-thumbs-up"></i>
+        <input type="button" class="post-like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
+    </div>
+
+    {% if object.posted_by == user %}
+    <div class="mb-3">
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Edit</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+    </div>
+    {% endif %}
+
     <div class="mb-5">
         <form method="POST">
             {% csrf_token %}
@@ -25,51 +42,82 @@
             <input type="submit" class="btn btn-info" value="post comment" style="margin-left: 20px">
         </form>
     </div>
-    {% for comment, liked in comments %}
-        <div class="container">
-            <div class="card m-3">
-                <p>{{ comment.posted_by }}</p>
-                <p>{{ comment.message }}</p>
-                <p>{{ comment.posted_date }}</p>
-                <p>This is a comment</p>
-                {% if liked %}
-                    <input type="button" class="like" name="{{ comment.pk }}" value="Dislike {{ comment.total_likes }}" />
-                {% else %}
-                    <input type="button" class="like" name="{{ comment.pk }}" value="Like {{ comment.total_likes }}" />
-                {% endif %}
-                <i class="fa fa-thumbs-up"></i>
-                {% for reply in comment.replies.all %}
-                    <p>{{ reply.posted_by }}</p>
-                    <p>{{ reply.message }}</p>
-                    <p>REPLY HERE</p>
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input type="hidden" name="parent_id" value="{{ reply.id }}">
-                        <input class="btn btn-primary" type="submit" value="Reply a reply">
-                    </form>
-                {% endfor %}
-                <!--reply-->
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                    <input class="btn btn-primary" type="submit" value="Reply">
-                </form>
-            </div>
-        </div>
-    {% endfor %}
-    {% if object.posted_by == user %}
-    <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Edit</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-    </div>
-    {% endif %}
+
 </div>
+
+    <div class="container">
+        {% for comment, liked in comments %}
+
+                <div class="card col-10">
+
+                    <div class="row">
+                        <p class="col" style="font-size: 16px;">{{ comment.message }}</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                        <i class="fa fa-thumbs-up"></i>
+                            {% if liked %}
+                                <input type="button" class="like" name="{{ comment.pk }}" value="Dislike {{ comment.total_likes }}" />
+                            {% else %}
+                                <input type="button" class="like" name="{{ comment.pk }}" value="Like {{ comment.total_likes }}" />
+                            {% endif %}
+                        </div>
+                        <p class="col-2"></p>
+                        <p class="col-3" style="font-size: 12px;">Posted by: {{ comment.posted_by }}</p>
+                        <p class="col-3" style="font-size: 12px;">{{ comment.posted_date }}</p>
+                    </div>
+
+                </div>
+
+        {% endfor %}
+</div>
+                    <!--{#% for reply in comment.replies.all %#}
+                        <p>{#  #}{ reply.posted_by }}</p>
+                        <p>{#  #}{ reply.posted_date }}</p>
+                        <p>{#  #}{ reply.message }}</p>
+                        <form method="POST">
+                            {#% csrf_token %#}
+                            {#  #}{ form.as_p }}
+                            <input type="hidden" name="parent_id" value="{#  #}{ reply.id }}">
+                            <input class="btn btn-primary" type="submit" value="Reply a reply">
+                        </form>
+
+                        {#% for replyreply in reply.replies.all %#}
+                            <p>{#  #}{ replyreply.posted_by }}</p>
+                            <p>{#  #} replyreply.posted_date }}</p>
+                            <p>{#  #}{ replyreply.message }}</p>
+                        {#% endfor %#}
+                    {#% endfor %#}
+
+                <form method="POST">
+                    {#% csrf_token %#}
+                    {#  #}{ form.as_p }}
+                    <input type="hidden" name="parent_id" value="{#  #}{ comment.id }}">
+                    <input class="btn btn-primary" type="submit" value="Reply">
+                </form>-->
+
 {% endblock content %}
 {% block javascript %}
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $(".post-like").click(function () {
+                let $thisPost = $(this);
+                $thisPost.html("Dislike");
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'like' %}",
+                    data: {'slug': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                   dataType: "json",
+                   success: function(response) {
+                        $thisPost.val("Likes " + response.likes);
+                    },
+                    error: function(rs, e) {
+                           alert('error!');
+                    }
+                });
+            });
 
 
             $(".like").click(function () {

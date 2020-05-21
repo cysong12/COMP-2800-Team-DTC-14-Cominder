@@ -25,5 +25,14 @@
       "description": "Go game",
       "category": 3
     }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 4,
+    "fields": {
+      "name": "custom",
+      "description": "Custom",
+      "category": 4
+    }
   }
 ]

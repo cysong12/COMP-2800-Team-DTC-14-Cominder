@@ -14,47 +14,36 @@
     </legend>
 
     {% if posts %}
-        {% for post in posts %}
-            <div class="container">
-                <div class="card mb-3">
-                    <a href="{% url 'post-detail' post.pk %}">
-                        <div class="row">
-                            <div class="col-8">
-                                    <div class="row no-gutters">
-                                        <div class="col-3">
-                                            <p>Title: {{ post.title }}</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <p>Category: {{ post.sub_forum.category.category.capitalize }}</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <p>Posted by: {{ post.posted_by }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <p>{{ post.posted_date }}</p>
-                                        </div>
-                                    </div>
-                                    <div class="row no-gutters">
-                                        <div class="col">
-                                            <p>Description: {{ post.description }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            <div class="col">
-                                <img class="float-right" src="{{ post.media.url }}" alt="user media" style="width:100%; max-width:200px;">
-                            </div>
+        {% for object in posts %}
+            <div class="card col-10 mb-3">
+                <a href="{% url 'post-detail' object.pk %}">
+                    <div class="row-no-gutters">
+                        <h1>{{ object.title }}</h1>
+                    </div>
+
+                    <div class="row no-gutters">
+                        <p class="col-2" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
+                        <p class="col-2" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
+                        <p class="col-2" style="font-size: 10px;">{{ object.posted_date }}</p>
+                    </div>
+
+                    <div class="row no-gutters mb-5">
+                        <div class="col-8">
+                            <p>{{ object.description }}</p>
                         </div>
-                    </a>
-                    <div class="row row-no-gutters">
-                        <div class="col-2">
-                            <input type="button" class="like" name="{{ post.pk }}" value="Likes {{ post.total_likes }}" />
-                            <i class="fa fa-thumbs-up"></i>
+                        <div class="col-3">
+                            <img src="{{ object.media.url }}" style="max-width: 200px; float: right;">
                         </div>
-                        <div class="col">
-                            <input type="button" value="{{post.comments.count}} Comments" onclick="location.href='{% url 'post-detail' post.pk %}'"/>
-                        </div>
+                    </div>
+                </a>
+                <div class="row mb-2">
+                    <div class="col-2">
+                        <i class="fa fa-thumbs-up"></i>
+                        <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
+                    </div>
+
+                    <div class="col-2">
+                        <input type="button" value="{{object.comments.count}} Comments" onclick="location.href='{% url 'post-detail' object.pk %}'"/>
                     </div>
                 </div>
             </div>

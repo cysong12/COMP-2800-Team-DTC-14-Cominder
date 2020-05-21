@@ -90,6 +90,11 @@ class SubforumPostsList(ListView):
     context_object_name = 'posts'
     template_name = 'forums/subforum_main.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(SubforumPostsList, self).get_context_data(**kwargs)
+        context['forums'] = SubForum.objects.filter(category__profile__user=self.request.user)
+        return context
+
     def get_queryset(self, *args, **kwargs):
         return Post.objects.filter(Q(sub_forum__pk=self.kwargs['pk']))
 
@@ -135,7 +140,7 @@ def post_detail_view(request, pk):      # post pk
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     success_url = '/task-tracker/home'
-    fields = ['title', 'description', 'sub_forum']
+    fields = ['title', 'description', 'media', 'sub_forum']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
