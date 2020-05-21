@@ -1,7 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<button type="button" class="btn btn-success mb-5" onclick="location.href='{% url 'task-create' %}'">New task</button>
+<button type="button" class="btn btn-primary-custom-2 mb-5" onclick="location.href='{% url 'task-create' %}'">ADD A NEW TASK</button>
 <legend class="border-bottom mb-4">
     Ongoing Tasks
 </legend>
@@ -11,80 +11,13 @@
 <div class="easter-egg">
     <div class="container">
         <div class="card mb-3">
-            <div class="row no-gutters">
-                <div class="col-2">
-                    <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
-                </div>
-                <div class="col-4">
-                    <p>Date Start: {{ task.date_start }}</p>
-                </div>
-                <div class="col-4">
-                    <p>Description: {{ task.description }}</p>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-warning"
-                        onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-danger"
-                        onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                        Completed
-                    </button>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                        data-backdrop="false">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Congrats!</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">&times;</span></button>
-                                </div>
-                                <div class="modal-body">
-                                    Would you like to upload to sub-forum {{ task.category }}?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default"
-                                        onclick="location.href='{% url 'complete-no-upload' task.id %}'">No</button>
-
-
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% else %}
-<div class="container">
-    <div class="card mb-3">
-        <div class="row no-gutters">
-            <div class="col-2">
-                <p>Task: <a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></p>
-            </div>
-            <div class="col-4">
-                <p>Date Start: {{ task.date_start }}</p>
-            </div>
-            <div class="col-4">
-                <p>Description: {{ task.description }}</p>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-warning"
-                    onclick="location.href='{% url 'task-update' task.id %}'">Edit</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-danger"
-                    onclick="location.href='{% url 'task-delete' task.id %}'">Delete</button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            <div class="card-body">
+            <h3 class="card-title task-title"><a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></h3>
+            <p class="card-subtitle mb-2 text-muted">Date Start: {{ task.date_start }}</p>
+            <p class="card-text">{{ task.description }}</p>
+            <a href="{% url 'task-update' task.id %}" class="btn btn-secondary-custom card-link">Edit</a>
+            <a href="{% url 'task-delete' task.id %}" class="btn btn-danger-custom card-link">Delete</a>
+                <button type="button" class="btn btn-primary-custom btn-lg card-link" data-toggle="modal" data-target="#myModal">
                     Complete
                 </button>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
@@ -100,14 +33,50 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary"
+                                <button type="button" class="btn btn-primary-custom"
                                     onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
+    </div>
+</div>
+
+{% else %}
+<div class="container">
+    <div class="card mb-3">
+        <div class="card-body">
+            <h3 class="card-title task-title"><a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></h3>
+            <p class="card-subtitle mb-2 text-muted">Date Start: {{ task.date_start }}</p>
+            <p class="card-text">{{ task.description }}</p>
+            <a href="{% url 'task-update' task.id %}" class="btn btn-secondary-custom card-link">Edit</a>
+            <a href="{% url 'task-delete' task.id %}" class="btn btn-danger-custom card-link">Delete</a>
+                <button type="button" class="btn btn-primary-custom btn-lg card-link" data-toggle="modal" data-target="#myModal">
+                    Complete
+                </button>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="false">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Congrats!</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                Would you like to upload to sub-forum {{ task.category }}?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary-custom"
+                                    onclick="location.href='{% url 'complete' task.id %}'">Upload task</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 {% endif %}

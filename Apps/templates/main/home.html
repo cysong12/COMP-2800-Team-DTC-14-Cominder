@@ -4,25 +4,25 @@
 {% block content %}
     <h1 class="mb-2"><span id="dayMessage"></span> {{ username }}!</h1>
     <hr>
-    <legend>Apps</legend>
+    <legend><b>APPS</b></legend>
     <div class="container mb-2">
         <div class="row">
-            <div class="col">
+            <div class="col-md-3">
                 <a href='{% url 'task-tracker-home' %}' class="btn app-link">Task Tracker</a>
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <a href="{% url 'forums-main' %}" class="btn app-link">Forums</a>
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <a href='{% url 'fridge-home' %}' class="btn app-link">Fridge</a>
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <a href="{% url 'heat-map-main' %}" class="btn app-link">Map</a>
             </div>
         </div>
     </div>
     <br>
-    <legend>Ongoing Tasks</legend>
+    <legend><b>ONGOING TASKS</b></legend>
     <div class="container">
     {% if tasks %}
         {% for task in tasks %}
@@ -86,23 +86,22 @@
     {% endif %}
     </div>
     <br>
-    <legend>Forum Posts</legend>
+    <legend><b>FORUM POSTS</b></legend>
     <div class="container mb-2">
         {% if posts %}
         {% for object, liked in posts %}
                 <div class="card col-12 mb-3">
                      <a href="{% url 'post-detail' object.id %}">
-                    <div class="row-no-gutters">
-                        <h1>{{ object.title }}</h1>
-                    </div>
+
+                         <h1 class="card-title">{{ object.title }}</h1>
 
                     <div class="row no-gutters">
-                        <p class="col-2" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
-                        <p class="col-2" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
-                        <p class="col-2" style="font-size: 10px;">{{ object.posted_date }}</p>
+                        <p class="col-2 card-text" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
+                        <p class="col-2 card-text" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
+                        <p class="col-2 card-text" style="font-size: 10px;">{{ object.posted_date }}</p>
                     </div>
 
-                    <div class="row no-gutters mb-5">
+                    <div class="row no-gutters mb-5 card-body">
                         <div class="col-8">
                             <p>{{ object.description }}</p>
                         </div>
@@ -115,13 +114,13 @@
                     <div class="col-2">
                         <i class="fa fa-thumbs-up"></i>
                         {% if liked %}
-                            <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
+                            <input type="button" class="like btn btn-secondary-custom" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
                         {% else %}
-                            <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
+                            <input type="button" class="like btn btn-secondary-custom" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
                         {% endif %}
                     </div>
                     <div class="col">
-                        <input type="button" value="{{object.comments.count}} Comments" onclick="location.href='{% url 'post-detail' object.pk %}'"/>
+                        <input type="button" class="btn btn-primary-custom-2" value="{{object.comments.count}} Comments" onclick="location.href='{% url 'post-detail' object.pk %}'"/>
                     </div>
                 </div>
             </div>
