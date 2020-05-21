@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from Apps.task_tracker.models import *
 from Apps.forums.models import *
-from .models import Profile
+from .models import *
 from django.views.generic import ListView
 
 
@@ -32,7 +32,11 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user_created = form.save()
+            all_categories = Category.objects.all()
+            profile_instance = Profile.objects.get(user=user_created)
+            profile_instance.preferences.set(all_categories)
+            profile_instance.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account successfully created! Log in and change some habits!')
             return redirect('login')
