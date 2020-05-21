@@ -58,7 +58,7 @@
                         <div class="col-4">
                         <i class="fa fa-thumbs-up"></i>
                             {% if liked %}
-                                <input type="button" class="like" name="{{ comment.pk }}" value="Dislike {{ comment.total_likes }}" />
+                                <input type="button" class="like" name="{{ comment.pk }}" value="Like {{ comment.total_likes }}" />
                             {% else %}
                                 <input type="button" class="like" name="{{ comment.pk }}" value="Like {{ comment.total_likes }}" />
                             {% endif %}
