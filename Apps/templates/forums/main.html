@@ -1,12 +1,12 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-    <button><a href="{% url 'forums-main' %}">Home</a></button>
+    <a class="btn btn-primary-custom" href="{% url 'forums-main' %}">Forums Home</a>
     <br>
     <br>
-    <legend>Your preference forums:</legend>
+    <legend>Your Preferred Forums:</legend>
     {% for subforums in forums %}
-        <button><a href="{% url 'subforum-home' subforums.pk %}">{{ subforums.name.capitalize }}</a></button>
+        <a class="btn btn-primary-custom-2" href="{% url 'subforum-home' subforums.pk %}">{{ subforums.name.capitalize }}</a>
     {% endfor %}
 
     <legend class="border-bottom m-4">
@@ -39,11 +39,11 @@
                 <div class="row mb-2">
                     <div class="col-2">
                         <i class="fa fa-thumbs-up"></i>
-                        <input type="button" class="like" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
+                        <input type="button" class="like btn btn-secondary-custom" name="{{ object.pk }}" value="Likes {{ object.total_likes }}" />
                     </div>
 
                     <div class="col-2">
-                        <input type="button" value="{{object.comments.count}} Comments" onclick="location.href='{% url 'post-detail' object.pk %}'"/>
+                        <input type="button" class="btn btn-primary-custom-2" value="{{object.comments.count}} Comments" onclick="location.href='{% url 'post-detail' object.pk %}'"/>
                     </div>
                 </div>
             </div>
