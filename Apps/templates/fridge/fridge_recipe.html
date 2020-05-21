@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<h1>GENERATED RECIPE</h1>
+    <hr>
+
+    <div class="card mb-3" style="max-width: 1500px;">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="{{ image_link }}" class="card-img" alt="recipe-image">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ title }}</h5>
+            <p id="summary"></p>
+              <p class="card-text"><small class="text-muted">{{ recipe_link }}</small></p>
+
+            <div class="accordion" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      INGREDIENTS
+                    </button>
+                  </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body">
+                    {% for ingredient in ingredients %}
+                        <p class="ingredient">{{ ingredient }}</p>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+            <br>
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      INSTRUCTIONS
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body">
+                    <ol>
+                        {% for instruction in instructions %}
+                            <li>{{ instruction }}</li><br>
+                        {% endfor %}
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <br><br>
+
+    <a class="btn btn-primary-custom" style="margin-right: 10px;" href="{% url 'fridge-home' %}">Back to my Fridge</a>
+    <a class="btn btn-primary-custom" href="{% url 'fridge-recipe' %}">Generate Another Recipe!</a>
+
+    <script>
+        let summary = document.getElementById('summary');
+        summary.innerHTML = '{{ summary }}';
+    </script>
+{% endblock content %}
