@@ -77,6 +77,7 @@ def landing_page(request):
 def contact(request):
     return render(request, 'main/contact.html')
 
+
 def social_share(request):
     return render(request, 'main/social_share.html')
 
