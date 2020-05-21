@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'uhuw4l(blaeay2e@7i&7y9&bmwi+^=f1+5j)j5_3pw^&uk#x1u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://cominder.herokuapp.com']
 
