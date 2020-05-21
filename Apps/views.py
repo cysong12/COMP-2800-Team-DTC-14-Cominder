@@ -32,7 +32,7 @@ def home(request):
 
     forums = SubForum.objects.filter(category__profile__user=request.user)
     posts = Post.objects.filter(sub_forum__in=forums)
-    update_points(request.user)
+    # update_points(request.user)
     context = {
         'username': username,
         'tasks': tasks,
