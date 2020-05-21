@@ -8,8 +8,8 @@
 {% if tasks %}
 {% for task in tasks %}
 {% if task.title.strip.lower == "do a barrel roll" %}
-<div class="easter-egg">
-    <div class="container">
+<div class="container">
+    <div class="easter-egg">
         <div class="card mb-3">
             <div class="card-body">
             <h3 class="card-title task-title"><a href="{% url 'task-detail' task.id %}">{{ task.title }}</a></h3>
