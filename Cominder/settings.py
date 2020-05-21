@@ -152,6 +152,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = 'Apps/static/'
 
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
+
 SESSION_COOKIE_AGE = 3600
 
 STATICFILES_DIRS = ('Apps/static/',)
