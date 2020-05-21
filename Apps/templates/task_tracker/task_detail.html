@@ -1,16 +1,17 @@
 {% extends 'base/base.html' %}
 {% block content %}
-<h1>Task tracker test</h1>
-<div class="container">
+<h1>Currently Selected Task:</h1>
+    <hr>
+    <div class="container-fluid">
     {% if object.user == user %}
     <div>
-        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'task-update' object.id %}">Update</a>
-        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'task-delete' object.id %}">Delete</a>
+        <a class="btn btn-secondary-custom btn-sm mt-1 mb-1" href="{% url 'task-update' object.id %}">Update</a>
+        <a class="btn btn-danger-custom btn-sm mt-1 mb-1" href="{% url 'task-delete' object.id %}">Delete</a>
     </div>
     {% endif %}
-    <h1>{{ object.title }}</h1>
-    <h1>{{ object.description }}</h1>
-    <h1>{{ object.date_start }}</h1>
-    <h1>{{ object.duration }}</h1>
-</div>
+    <h2>Title: {{ object.title }}</h2>
+    <h4>Description: {{ object.description }}</h4>
+    <h4>Task Start Date: {{ object.date_start }}</h4>
+    <h4>Task Duration: {{ object.duration }}</h4>
+    </div>
 {% endblock content %}
