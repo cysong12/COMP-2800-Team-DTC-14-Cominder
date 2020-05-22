@@ -75,7 +75,7 @@ class ProfileListView(ListView):
     model = Profile
     template_name = 'users/leaderboard.html'
     context_object_name = 'profiles'
-    ordering = ['-points']
+    ordering = ['points']
     paginate_by = 5
     
     def get_queryset(self):
