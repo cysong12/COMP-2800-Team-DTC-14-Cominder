@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import django_heroku
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -179,6 +180,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'feature-home'
 
 LOGIN_URL = 'login'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+GS_BUCKET_NAME = 'cominder'
+
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.path.join(BASE_DIR, 'Cominder-4f9fd2e44f4f.json')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
