@@ -3,7 +3,7 @@
     "model": "forums.subforum",
     "pk": 1,
     "fields": {
-      "name": "sports",
+      "name": "Sports",
       "description": "Do sports",
       "category": 1
     }
@@ -12,7 +12,7 @@
     "model": "forums.subforum",
     "pk": 2,
     "fields": {
-      "name": "cooking",
+      "name": "Cooking",
       "description": "Go cook",
       "category": 2
     }
@@ -21,18 +21,81 @@
     "model": "forums.subforum",
     "pk": 3,
     "fields": {
-      "name": "gaming",
+      "name": "Gaming",
       "description": "Go game",
       "category": 3
     }
   },
   {
     "model": "forums.subforum",
+    "pk": 99,
+    "fields": {
+      "name": "Custom",
+      "description": "Custom",
+      "category": 99
+    }
+  },
+  {
+    "model": "forums.subforum",
     "pk": 4,
     "fields": {
-      "name": "custom",
-      "description": "Custom",
+      "name": "Wellness",
+      "description": "Yoga/meditation",
       "category": 4
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 5,
+    "fields": {
+      "name": "Travel",
+      "description": "Travel",
+      "category": 5
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 6,
+    "fields": {
+      "name": "Work",
+      "description": "Work-related",
+      "category": 6
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 7,
+    "fields": {
+      "name": "Self-improvement",
+      "description": "Improving thyself",
+      "category": 7
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 8,
+    "fields": {
+      "name": "Productivity",
+      "description": "Productivity",
+      "category": 8
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 9,
+    "fields": {
+      "name": "Fitness",
+      "description": "Flex your gains",
+      "category": 9
+    }
+  },
+  {
+    "model": "forums.subforum",
+    "pk": 10,
+    "fields": {
+      "name": "NSFW",
+      "description": "No kids!",
+      "category": 10
     }
   }
 ]

@@ -22,9 +22,58 @@
   },
   {
     "model": "task_tracker.Category",
-    "pk": 4,
+    "pk": 99,
     "fields": {
       "category": "Custom"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 4,
+    "fields": {
+      "category": "Wellness"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 5,
+    "fields": {
+      "category": "Travel"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 6,
+    "fields": {
+      "category": "Work"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 7,
+    "fields": {
+      "category": "Self-improvement"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 8,
+    "fields": {
+      "category": "Productivity"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 9,
+    "fields": {
+      "category": "Fitness"
+    }
+  },
+  {
+    "model": "task_tracker.Category",
+    "pk": 10,
+    "fields": {
+      "category": "NSFW"
     }
   }
 ]
