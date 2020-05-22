@@ -25,7 +25,6 @@ class Post(models.Model):
     description = models.CharField(max_length=200)
     likes = models.ManyToManyField(User, related_name='post_likes')
     # comments = models.ForeignKey(Comment, related_name='comments')
-    slug = models.SlugField()
     media = models.FileField(default='post_media/default.jpg', upload_to='post_media')
     sub_forum = models.ForeignKey(SubForum, on_delete=models.CASCADE)
 

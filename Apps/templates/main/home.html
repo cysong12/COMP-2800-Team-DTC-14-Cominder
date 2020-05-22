@@ -91,25 +91,30 @@
         {% if posts %}
         {% for object, liked in posts %}
                 <div class="card col-12 mb-3">
-                     <a href="{% url 'post-detail' object.id %}">
+                    <div class="row">
+                        <div class="col-7">
+                             <a href="{% url 'post-detail' object.id %}">
 
-                         <h1 class="card-title">{{ object.title }}</h1>
+                                 <h1 class="card-title">{{ object.title }}</h1>
 
-                    <div class="row no-gutters">
-                        <p class="col-2 card-text" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
-                        <p class="col-2 card-text" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
-                        <p class="col-2 card-text" style="font-size: 10px;">{{ object.posted_date }}</p>
-                    </div>
-
-                    <div class="row no-gutters mb-5 card-body">
-                        <div class="col-8">
-                            <p>{{ object.description }}</p>
+                            <div class="row no-gutters">
+                                <p class="col-3 card-text" style="font-size: 10px;">Category: {{ object.sub_forum.category.category }}</p>
+                                <p class="col-3 card-text" style="font-size: 10px;">Posted by: {{ object.posted_by }}</p>
+                            </div>
+                             <div class="row no-gutters">
+                                <p class="col card-text" style="font-size: 10px;">{{ object.posted_date }}</p>
+                             </div>
+                            <div class="row no-gutters mb-5 card-body">
+                                <div class="col-8">
+                                    <p>{{ object.description }}</p>
+                                </div>
+                            </div>
+                             </a>
                         </div>
-                        <div class="col-3">
-                            <img src="{{ object.media.url }}" style="max-width: 200px; float: right;">
+                        <div class="col-5">
+                            <img src="{{ object.media.url }}" class="img-fluid">
                         </div>
                     </div>
-                     </a>
                 <div class="row">
                     <div class="col-2">
                         <i class="fa fa-thumbs-up"></i>
