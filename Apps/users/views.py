@@ -78,5 +78,5 @@ class ProfileListView(ListView):
     ordering = ['-points']
     paginate_by = 5
     
-    def get_queryset(self):
-        return Profile.objects.all().exclude(user__is_superuser=True)
+    #def get_queryset(self):
+    #    return Profile.objects.all().exclude(user__is_superuser=True)
