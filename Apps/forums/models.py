@@ -34,10 +34,6 @@ class Post(models.Model):
     def total_likes(self):
         return self.likes.count()
 
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super(Post, self).save(*args, **kwargs)
-
 
 class Comment(models.Model):
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='commented_user')
