@@ -62,8 +62,7 @@ to view Sports Forum posts, you must update your profile preferences to `Sports`
 
 ## To login with Google/Facebook
 
-Due to the short time frame we were given to complete this assignment, we could not come up with a script to allow social logins to <br>
-work on local host. If you would like to access our social logins, please navigate to our hosted website http://cominder.herokuapp.com/ . We apologize for the inconvenience.
+Due to the short time frame we were given to complete this assignment, we could not come up with a script to allow social logins to work on local host. If you would like to access our social logins, please navigate to our hosted website http://cominder.herokuapp.com/ . We apologize for the inconvenience.
 
 ## To create an Admin User and access Detailed Configurations.
 >1.) Navigate to the project directory `Cominder` on terminal <br/>
