@@ -4,8 +4,6 @@
 
 >
 >
-**Warning, you must have Python 3.x installed in order to follow any of these steps.
-[Click here](https://www.python.org/downloads/) to download Python.**
 
 ## How is the Repository Organized?
 
