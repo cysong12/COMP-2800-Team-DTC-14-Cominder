@@ -62,9 +62,15 @@ to view Sports Forum posts, you must update your profile preferences to `Sports`
 
 ## To login with Google/Facebook
 
+Google: 
 >1. go to /admin -> sites and add http://localhost:8000/ to domain names
 >
 >2. go to /admin -> social applications and add social application, select provider (ex. google), add a name (ex. cominder-google), client id (292593611416-ggoeb5ctqojtc6nja47blarlq6bem6c4.apps.googleusercontent.com), secret key (_P_DaH72qa7kZz8RqJpR1nO0), and move localhost:8000/ to chosen sites
+
+Facebook: 
+> for facebook, do the same, but the client id is 532713300731257
+> and secret key is fdb8cb1047b89cc7feb31d224afb6d63
+
 
 ## To create an Admin User and access Detailed Configurations.
 >1. Navigate to the project directory `Cominder` on terminal <br/>
