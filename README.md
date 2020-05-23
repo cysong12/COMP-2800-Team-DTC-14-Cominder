@@ -72,3 +72,7 @@ navigate to `localhost:8000/admin` <br>
 >users on the website.
 >
 Note: With the admin account, you will be able to access all configurations. No passwords or keys are needed.
+
+## Test Plan Link Below
+
+https://docs.google.com/spreadsheets/d/1GZHuXnIMMpEJd1Im2Sq9-rc1fpq_l0HCYTv1ln_H0Ng/edit?usp=sharing
