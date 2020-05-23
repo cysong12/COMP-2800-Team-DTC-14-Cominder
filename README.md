@@ -55,8 +55,6 @@ Windows:
 >
 >11. `python manage.py runserver`                     to run the server on local host on http://127.0.0.1:8000/
 
-Optional: 
-Python3 manage.py createsuperuser to create a super user (admin access) and follow the terminal instructions
 ## To access Forums
 
 You must update your profile with Preference settings in order to view forums with that category. For example, in order
