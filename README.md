@@ -71,4 +71,4 @@ navigate to `localhost:8000/admin` <br>
 >4.) Log in with the account you have just created. Once you are logged in, you should be able to view all objects and 
 >users on the website.
 >
->> Note: With the admin account, you will be able to access all configurations. No passwords or keys are needed.
+Note: With the admin account, you will be able to access all configurations. No passwords or keys are needed.
