@@ -11,8 +11,8 @@
 
 Django revolves around applications, where each application is in charge of each feature of our web-application 
 (task_tracker, forums fridge, etc). You can see the full list of our application in the `Apps` directory in the root. 
-When starting a new application, each directory is automatically generated a `urls.py` (contains all the paths to all 
-pages), `admin.py`, (allows you to register Models (tables in MySQL) in the admin GUI, and `views.py` (renders HTML 
+When starting a new application, each directory automatically generates a `urls.py` (contains all the paths to all 
+pages), `admin.py` (allows you to register Models (tables in MySQL) in the admin GUI, and `views.py` (renders HTML 
 pages or generic classes on a page). 
 
 ## To Assemble a Development Environment
