@@ -62,20 +62,21 @@ to view Sports Forum posts, you must update your profile preferences to `Sports`
 
 ## To login with Google/Facebook
 
-Due to the short time frame we were given to complete this assignment, we could not come up with a script to allow social logins to work on local host. If you would like to access our social logins, please navigate to our hosted website http://cominder.herokuapp.com/ . We apologize for the inconvenience.
+>1. go to /admin -> sites and add http://localhost:8000/ to domain names
+>
+>2. go to /admin -> social applications and add social application, select provider (ex. google), add a name (ex. cominder-google), client id (292593611416-ggoeb5ctqojtc6nja47blarlq6bem6c4.apps.googleusercontent.com), secret key (_P_DaH72qa7kZz8RqJpR1nO0), and move localhost:8000/ to chosen sites
 
 ## To create an Admin User and access Detailed Configurations.
->1.) Navigate to the project directory `Cominder` on terminal <br/>
+>1. Navigate to the project directory `Cominder` on terminal <br/>
 >
->2.) Type in `python manage.py createsuperuser`. Then, it will prompt you to create an account. Create the account. <br>
+>2. Type in `python manage.py createsuperuser`. Then, it will prompt you to create an account. Create the account. <br>
 >
->3.) The account you have just made has admin privileges. Run the localhost server (`python manage.py runserver`) and 
+>3. The account you have just made has admin privileges. Run the localhost server (`python manage.py runserver`) and 
 navigate to `localhost:8000/admin` <br>
 >
->4.) Log in with the account you have just created. Once you are logged in, you should be able to view all objects and 
+>4. Log in with the account you have just created. Once you are logged in, you should be able to view all objects and 
 >users on the website.
 >
-Note: With the admin account, you will be able to access all configurations. No passwords or keys are needed.
 
 ## Test Plan Link Below
 
